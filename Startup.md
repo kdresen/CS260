@@ -8,6 +8,5 @@ If you are like me, you love golf. But with so many golf courses around, it can 
 
 ### Design
 
-![Mock](Screenshot 2023-09-27 151246.png)
-
+![Mock](https://github.com/kdresen/CS260/blob/ac37c7ed39a22b0b6434847029346fb84bf3946a/Screenshot%202023-09-27%20151228.png)
 ![Mock](Screenshot 2023-09-27 151246.png)
