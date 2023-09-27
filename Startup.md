@@ -11,6 +11,18 @@ If you are like me, you love golf. But with so many golf courses around, it can 
 ![Main Page](https://github.com/kdresen/CS260/blob/ac37c7ed39a22b0b6434847029346fb84bf3946a/Screenshot%202023-09-27%20151228.png)
 ![Submit Review](https://github.com/kdresen/CS260/blob/94d10befe09a292ca5667548969ec3df353b751b/Screenshot%202023-09-27%20151246.png)
 
+### Key Features
+
+- Secure login over HTTPS
+- Search golf courses reviewed
+- Display of rating categories
+- Show recent reviews
+- Show course rating averages in realtime
+- Rating averages are stored
+- Ability to create reviews for a specific course
+- Allow admin to remove reviews from database to prevent abuse
+- Allow admin to add new local courses
+
 ### Technologies
 
 The required technologies will be used in hte following ways
