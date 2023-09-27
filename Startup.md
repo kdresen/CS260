@@ -11,4 +11,20 @@ If you are like me, you love golf. But with so many golf courses around, it can 
 ![Main Page](https://github.com/kdresen/CS260/blob/ac37c7ed39a22b0b6434847029346fb84bf3946a/Screenshot%202023-09-27%20151228.png)
 ![Submit Review](https://github.com/kdresen/CS260/blob/94d10befe09a292ca5667548969ec3df353b751b/Screenshot%202023-09-27%20151246.png)
 
+### Technologies
 
+The required technologies will be used in hte following ways
+
+- **HTML** - HTML for page structure, will have two pages: login and viewing reviewed courses, submitting a review
+- **CSS** - Design and styling of website to account for different screens, and create an asthetically pleasing layout
+- **JavaScript** - Login, Reviewed courses, and submission of reviews
+- **Service** - Backend service with endpoints for:
+    - login
+    - retrieving courses
+    - submitting reviews
+    - retrieving course ratings
+- **DB** - Store users, courses, and reviews
+- **Login** - Register and login users. Passwords and usernames stored securely in database. Can't submit reviews without authentication
+- **WebSocket** - updates the overall course rating of each course with each review submitted. New reviews are displayed on Main page
+- **React** - port application to use the React web framework
+       
