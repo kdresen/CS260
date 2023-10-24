@@ -27,7 +27,7 @@ If you are like me, you love golf. But with so many golf courses around, it can 
 
 The required technologies will be used in hte following ways
 
-- **HTML** - **Should be finished, may make some small changes in the future** HTML for page structure, will have two pages: login and viewing reviewed courses, submitting a review
+- DONE **HTML** - **Should be finished, may make some small changes in the future** HTML for page structure, will have two pages: login and viewing reviewed courses, submitting a review
 - **CSS** - Design and styling of website to account for different screens, and create an asthetically pleasing layout
 - **JavaScript** - Login, Reviewed courses, and submission of reviews
 - **Service** - Backend service with endpoints for:
