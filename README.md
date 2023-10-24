@@ -25,7 +25,7 @@ If you are like me, you love golf. But with so many golf courses around, it can 
 
 ### Technologies
 
-The required technologies will be used in hte following ways
+The required technologies will be used in the following ways
 
 - **HTML** - HTML for page structure, will have two pages: login and viewing reviewed courses, submitting a review
 - **CSS** - Design and styling of website to account for different screens, and create an asthetically pleasing layout
@@ -39,4 +39,16 @@ The required technologies will be used in hte following ways
 - **Login** - Register and login users. Passwords and usernames stored securely in database. Can't submit reviews without authentication
 - **WebSocket** - updates the overall course rating of each course with each review submitted. New reviews are displayed on Main page
 - **React** - port application to use the React web framework
-       
+
+
+### HTML Deliverable
+For this deliverable, I set up the structure of both pages of the application using HTML
+- **HTML pages** - Two pages that show the login and list of Golf courses with review and the page for writing a review
+- **Links** - Logging in redirects to the review page, added navigation links at top of page to write a review and to return to the course list page
+- **Text** - Each review rating is represented by a category title and a rating from 1 to 5 stars.
+- **Selection** - the review page uses dropdown boxes to choose from ratings and course names
+- **Images** - used an external library for icons to use a star icon for ratings
+- **Login** - created forms with input boxes and a submit button to login
+- **Database** - Dropdown boxes and course list will pull from the database for real time information of courses and average ratings for each category, still not done, I will need to set up the database first before the rest can get the values from it
+- **Websocket** - Course list ratings will pull real time to show an average rating for each category
+ 
