@@ -8,14 +8,108 @@
                 .checked {
                     color: orange;
                 }
+                
+                .course-box {
+                    border: 1px solid #ccc;
+                    
+                    padding: 5px;
+                }
+
+                .rating {
+                    border: 1px solid #ccc;
+
+                   
+                }
+
+                label {
+                    display: block;
+                    margin-bottom: 10px;
+                    font-weight: bold;
+                }
+
+                .label {
+
+                    border: 1px solid #ccc;
+
+                    
+                }
+
+                .name {
+                    border: 1px solid #ccc;
+                    
+                }
+
+                .label {
+                    font-weight: bold;
+                }
             </style>
 
-            <h2>Rating</h2>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
+            <form method="post" action="index.html"> <!--TODO change out the forms for a selection that chooses a value based on the number of starts for each category-->
+            
+            <h1>Write a Review</h1>
+            
+            <h4>Choose a golf course from the dropdown list</h4>
+            <label for="golf-course-name">Course Name:
+                <select id="golf-course-names">
+                    <option value="course-name">Course 1</option>
+                    <option value="course-name">Course 2</option>
+                    <option value="course-name">Course 3</option>
+                    <option value="course-name">Course 4</option>
+                    <option value="course-name">Course 5</option>
+                    <option value="course-name">Course 6</option>
+                    <option value="course-name">Course 7</option>
+                    <option value="course-name">Course 8</option>
+                    <option value="course-name">Course 9</option>
+                </select>
+            </label>
+
+
+            <form action="submit_rating.php" method="post">
+                <label for="course-condition">Course Condition:
+                    <select id="course-condition" name="course-condition">
+                        <option value="1">1 star</option>
+                        <option value="2">2 stars</option>
+                        <option value="3">3 stars</option>
+                        <option value="4">4 stars</option>
+                        <option value="5">5 stars</option>
+                    </select>
+                </label>
+                
+                <label for="forgiveness">Forgiveness:
+                    <select id="forgiveness" name="forgiveness">
+                        <option value="1">1 star</option>
+                        <option value="2">2 stars</option>
+                        <option value="3">3 stars</option>
+                        <option value="4">4 stars</option>
+                        <option value="5">5 stars</option>
+                    </select>
+                </label>
+
+                <label for="noise">Noise:
+                    <select id="noise" name="noise">
+                        <option value="1">1 star</option>
+                        <option value="2">2 stars</option>
+                        <option value="3">3 stars</option>
+                        <option value="4">4 stars</option>
+                        <option value="5">5 stars</option>
+                    </select>
+                </label>
+                <label for="pace-of-play">Pace of Play:
+                    <select id="pace-of-play" name="pace-of-play">
+                        <option value="1">1 star</option>
+                        <option value="2">2 stars</option>
+                        <option value="3">3 stars</option>
+                        <option value="4">4 stars</option>
+                        <option value="5">5 stars</option>
+                    </select>
+                </label>
+        
+                <!-- Add more categories as needed -->
+        
+                <input type="submit" value="Submit">
+
+        </form>
+
         </main>
     </body>
 
