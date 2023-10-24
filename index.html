@@ -11,6 +11,10 @@
                 padding: 100px 0;
             }
 
+            .username {
+                color: blue;
+            }
+
             .header h1 {
                 font-size: 36px;
             }
@@ -45,7 +49,7 @@
                     color: orange;
                 }
             </style>
-            <h1>Welcome</h1>
+            <h1>Welcome <span class="username">Username placeholder</span></h1>
             <h2>Log in to write a review</h2>
             <form method="get" action="index.html">
                 <label for="name">Login</label>
@@ -89,7 +93,12 @@
                 }
             </style>
 
-            <!--This is a temporary show until functionality to pull review scores from server is added-->
+            <h5>
+                This is a temporary show until functionality to pull review scores from server is added
+            </h5>
+            <h5>
+                Star values are a placeholder, stars will show database category values when implemented
+            </h5>
             <ul>
                 <li class="course-box"><span class="label">Course Name</span>
                     <span class="label">Course Conditions</span>
