@@ -18,6 +18,7 @@
             
             body {
                 font-family: sans-serif;
+                margin: 0px;
                 
             }
 
@@ -36,12 +37,42 @@
                 background-color: #003d2b;
             }
 
+            .nav-bar {
+                background-color: #dbf373;
+                color: #003d2b;
+                display: flex;
+                justify-content: space-between;
+                
+            }
+
             .nav-bar-item {
+                margin-right: 20px;
+                text-decoration: none;
+                font-weight: bold;
                 color: #446600;
+                position: relative;
+                transition: background-color 0.3s ease;
+                padding: 10px;
+            }
+
+            .nav-bar-item:hover {
+                background-color: #003d2b;
+                color: #dbf373;
+
             }
 
             button {
                 background-color: #dbf373;
+                transition: background-color 0.3s ease;
+            }
+
+            button:hover {
+                background-color: #e0f89c;
+            }
+
+            main {
+                margin: 0px;
+                padding: 0px;
             }
             
         </style>
@@ -66,8 +97,8 @@
             <div class="nav-bar" style="background-color: #dbf373; color: #003d2b;">            
                 <nav>
                     <menu>
-                        <li><a class="nav-bar-item" href="index.html">Home</a></li>
-                        <li><a class="nav-bar-item" href="review.html">Write a Review</a></li>
+                        <a class="nav-bar-item" href="index.html">Home</a>
+                        <a class="nav-bar-item" href="review.html">Write a Review</a>
                         
                     </menu>
                 </nav>
@@ -75,8 +106,8 @@
 
         </header>
 
-        <main>
-            <div class="main-body" style="color: white; background-color: #003d2b;">
+        <main style="border-top: thin #45523e solid; background-color: #003d2b;">
+            <div class="main-body" style="color: white;">
                 <!-- Add icon library-->
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
                 <style>
@@ -87,8 +118,10 @@
                 <div class="login-prompt" >
                     <h2>Log in to write a review</h2>
                     <form method="get" action="index.html" style="border-bottom: thin black solid">
-                        <label for="name">Login</label>
+                        <label for="name">Username</label>
                         <input type="text" id="name" placeholder="Type your username" /> 
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Type your password" />
                         <button type="submit" href="review.html">Submit</button>
                     </form>
 
@@ -406,11 +439,11 @@
            
         </main>
 
-        <footer>
+        <footer style="background-color: #dbf373;">
             <hr />
             <span class="text-reset">Kallai Dresen</span>
             <br />
-            <a href="https://github.com/kdresen/CS260/blob/main/Startup.md">GitHub</a>
+            <a href="https://github.com/kdresen/CS260/blob/main/Startup">GitHub</a>
         </footer>
     </body>
 
