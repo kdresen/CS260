@@ -67,6 +67,10 @@
                 justify-content: center;
                 min-height: 60vh;
             }
+
+            body {
+                font-family: sans-serif;
+            }
             
         </style>
     </head>
@@ -136,6 +140,8 @@
                 .review-wrapper {
                     display: flex;
                     justify-content: center;
+                    background-color: #003d2b;
+                    padding: 20px;
                 }
 
                 .review-container {
@@ -143,13 +149,44 @@
                     background-color:   #dbf373;
                     display: flex;
                     justify-content: center;
+                    padding: 20px;
+                    border-radius: 20px;
                     
+                }
+
+                select {
+                    width: 30%;
+                    margin: 5px;
+                }
+
+                form label {
+                    font-size: 20px;
+                }
+
+                form h4 {
+
+                    text-align: center;
+                }
+
+                .submit-review {
+                    background-color: #dbf373;
+                    margin: 1px #dbf373 solid;
+                    border-radius: 10px;
+                    font-size: 20px;
+                    width: 33%;
+                    transition: background-color 0.3s ease;
+                }
+
+                .submit-review:hover {
+                    background-color: #003d2b;
+                    color: #dbf373;
+
                 }
             </style>
 
             <div class="review-wrapper">
                 <div class="review-container">
-                    <form method="post" action="index.html" style="display: flex; flex-direction: column; width: 80%;"> <!--TODO change out the forms for a selection that chooses a value based on the number of starts for each category-->
+                    <form method="post" action="index.html" style="display: flex; flex-direction: column; width: 80%; align-items:center;"> <!--TODO change out the forms for a selection that chooses a value based on the number of starts for each category-->
                 
                         <h1>Write a Review</h1>
                         
@@ -204,14 +241,25 @@
                                 <option value="5">5 stars</option>
                             </select>
                             <!-- Add more categories as needed -->
+                            <br/>
                     
-                            <input type="submit" value="Submit" href="index.html">
+                            <input type="submit" value="Submit" class="submit-review" href="index.html">
             
                         </form>
+                </div>
+                <div class="category-explain">
+
                 </div>
             </div>
 
         </main>
+
+        <footer style="background-color: #dbf373; display: flex;">
+
+            <span class="author-name" style="font-weight: bold; margin-right: 5px;">Kallai Dresen</span>
+            <br />
+            <a style="text-decoration: none;"href="https://github.com/kdresen/CS260/blob/main/Startup">GitHub</a>
+        </footer>
     </body>
 
 </html>
