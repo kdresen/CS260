@@ -2,11 +2,20 @@
 <html lang="en">
     <head>
         <style>
+            @keyframes slideIn {
+                from {
+                    transform: translateX(-100%);
+                }
+                to {
+                    transform: translateX(0);
+                }
+            }
             .header {
                 background-image: url(golfpanorama.jpg);
                 background-size: cover;
                 background-position: center;
                 color: #dbf373;
+                
                 
                 text-align: center;
                 padding: 100px 0;
@@ -23,11 +32,19 @@
             }
 
             .username {
-                color: blue;
+                color: #003d2b;
+                margin-left: 3px;
+                margin-right: 10px;
+            }
+
+            .display-username {
+                display: hidden;
             }
 
             .header h1 {
                 margin: 0;
+                animation: slideIn 1s ease-in;
+                
             }
 
             
@@ -74,6 +91,31 @@
                 margin: 0px;
                 padding: 0px;
             }
+
+            .main-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 60vh;
+            }
+            .login-div {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-top: 25px;
+                margin-left: 10px;
+            }
+
+            .login-prompt {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                
+            }
+
+
             
         </style>
         <meta charset="UTF-8" />
@@ -95,13 +137,16 @@
             
             <!--Navitgation-->
             <div class="nav-bar" style="background-color: #dbf373; color: #003d2b;">            
-                <nav>
+                <nav style="display: flex; justify-content: space-between;">
                     <menu>
                         <a class="nav-bar-item" href="index.html">Home</a>
                         <a class="nav-bar-item" href="review.html">Write a Review</a>
                         
                     </menu>
                 </nav>
+                <!--TODO add javascript hiding this until after login-->
+                <h3 class="display-username" style="display: flex; justify-content: right;">Welcome<span class="username"> Username placeholder</span></h1>
+                
             </div>
 
         </header>
@@ -115,324 +160,355 @@
                     color: orange;
                 }
                 </style>
-                <div class="login-prompt" >
-                    <h2>Log in to write a review</h2>
-                    <form method="get" action="index.html" style="border-bottom: thin black solid">
-                        <label for="name">Username</label>
-                        <input type="text" id="name" placeholder="Type your username" /> 
-                        <label for="password">Password</label>
-                        <input type="password" id="password" placeholder="Type your password" />
-                        <button type="submit" href="review.html">Submit</button>
-                    </form>
-
-                </div>
-
-
-                <br />
-                <br />
-
-
-                <h3>Welcome <span class="username">Username placeholder</span></h1>
+                <div class="login-div" >
+                    
+                    
+                    <div class="login-prompt">
+                        <h2>Log in to write a review</h2>
+                        <form method="get" action="index.html" style="border-bottom: thin black solid; display: flex; flex-direction: column;">
+                            <span>
+                                <label for="name">Username</label>
+                                <input type="text" id="name" placeholder="Type your username" /> 
+                            </span>
+                            <span>
+                                <label for="password">Password</label>
+                                <input type="password" id="password" placeholder="Type your password" />
+                            </span>
+                            <button type="submit" href="review.html">Submit</button>
+                        </form>
+                    </div>
+                    
                 
-                <h1 style="border-left: solid 0.5em #dbf373">Utah County Golf Courses</h1>
-                <a href="review.html">
-                    <button type="button">Write a Review</button>
-                </a>
-                <style>
-                    .course-box {
+                </div>
+                
+
+
+                <br />
+                <br />
+
+
+                
+
+                <div class="main-container">
+                    <h1 style="border-left: solid 0.5em #dbf373">Utah County Golf Courses</h1>
+                    <a href="review.html">
+                        <button type="button">Write a Review</button>
+                    </a>
+                    <style>
+                        .course-box {
                         
 
-                        margin: 10px 0;
-                    }
+                           margin: 10px 0;
+                        }
 
-                    .rating-list-items {
-                        list-style: none;
-                        padding: 0;
-                        margin: 0;
-                        display: flex;
-                        flex-direction: column;
+                        .rating-list-container {
+                            background-color: #003d2b;
+                            color: #dbf373;
+                            padding: 20px;
+                            border: thin #45523e solid;
+                        }   
 
-                    }
+                        .rating-list {
+                            list-style: none;
+                            padding: 0;
+                            margin: 0;
+                            display: flex;
+                            flex-direction: column;
+                        }
+
+                        .rating-list-items {
+                            list-style: none;
+                            padding: 0;
+                            margin: 0;
+                            display: flex;
+                            flex-direction: column;
+
+                        }   
 
 
 
-                    .label {
-                        border: 1px solid #ccc;
-                        font-weight: bold;
+                        .label {
+                            border: 1px solid #ccc;
+                            font-weight: bold;  
 
-                    }
+                        }   
 
 
-                </style>
+                    </style>    
 
-                <h5>
-                    This is a temporary show until functionality to pull review scores from server is added
-                </h5>
-                <h5>
-                    Star values are a placeholder, stars will show database category values when implemented
-                </h5>
-                <div class="rating-list" style="background-color: #003d2b; color: #dbf373;">
-                    
-                    <table>
-                        <tr>
-                            <th>Course Name</th>
-                            <th>Course Condition</th>
-                            <th>Forgiveness</th>
-                            <th>Noise</th>
-                            <th>Pace of Play</th>
-                        </tr>
-                        <tr>
-                            <td class="name">Course Name</td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="name">Course Name</td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="name">Course Name</td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="name">Course Name</td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="name">Course Name</td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="name">Course Name</td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="name">Course Name</td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="name">Course Name</td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                            <td class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span></span>
-                            </td>
-                        </tr>
-                    </table>
+                    <h5>
+                        This is a temporary show until functionality to pull review scores from server is added
+                    </h5>
+                    <h5>
+                        Star values are a placeholder, stars will show database category values when implemented
+                    </h5>
+                    <div class="rating-list-container">
+                        <div class="rating-list" >
 
-                    
+                            <table>
+                                <tr>
+                                    <th>Course Name</th>
+                                    <th>Course Condition</th>
+                                    <th>Forgiveness</th>
+                                    <th>Noise</th>
+                                    <th>Pace of Play</th>
+                                </tr>
+                                <tr>
+                                    <td class="name">Course Name</td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name">Course Name</td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name">Course Name</td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name">Course Name</td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name">Course Name</td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name">Course Name</td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name">Course Name</td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name">Course Name</td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                </tr>
+                            </table>    
+    
+    
+                        </div>
+                    </div>
+
                 </div>
+                
                 
 
             </div>
