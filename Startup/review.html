@@ -3,7 +3,7 @@
     <head>
         <style>
             .header {
-                background-image: url(mountainpanorama.jpg);
+                background-image: url(golfpanorama.jpg);
                 background-size: cover;
                 background-position: center;
                 color: white;
@@ -11,17 +11,88 @@
                 padding: 100px 0;
             }
 
+            .display-username {
+                display: none;
+            }
+
             .header h1 {
-                font-size: 36px;
+                margin: 0;
+                animation: slideIn 1s ease-in;
+                
+            }
+
+            
+            .header-box {
+                width: 300px;
+                padding: 10px;
+                background-color: #003d2b;
+            }
+
+            .nav-bar {
+                background-color: #dbf373;
+                color: #003d2b;
+                display: flex;
+                justify-content: space-between;
+                
+            }
+
+            .nav-bar-item {
+                margin-right: 20px;
+                text-decoration: none;
+                font-weight: bold;
+                color: #446600;
+                position: relative;
+                transition: background-color 0.3s ease;
+                border-radius: 10px;
+                padding: 10px;
+            }
+
+            .nav-bar-item:hover {
+                background-color: #003d2b;
+                color: #dbf373;
+                border-radius: 10px;
+
+            }
+
+            main {
+                margin: 0px;
+                padding: 0px;
+                background-color: #003d2b;
+            }
+
+            .main-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 60vh;
             }
             
         </style>
     </head>
     <body>
-        <header>
+        <header style="color: #dbf373; background-color: #dbf373;">
             <div class="header">
-                <h1>Golfer's Buddy</h1>
+                <div class="header-box">
+                    <h1>Golfer's Buddy</h1>
+                </div>
+                
             </div>
+            
+            <!--Navitgation-->
+            <div class="nav-bar" style="background-color: #dbf373; color: #003d2b;">            
+                <nav style="display: flex; justify-content: space-between;">
+                    <menu>
+                        <a class="nav-bar-item" href="index.html">Home</a>
+                        <a class="nav-bar-item" href="review.html">Write a Review</a>
+                        
+                    </menu>
+                </nav>
+                <!--TODO add javascript hiding this until after login-->
+                <h3 class="display-username" style="display: flex; justify-content: right;">Welcome<span class="username"> Username placeholder</span></h1>
+                
+            </div>
+
         </header>
         <main>
             <!-- Add icon library-->
@@ -52,6 +123,7 @@
                 .label {
 
                     border: 1px solid #ccc;
+                    font-weight: bold;
 
                     
                 }
@@ -61,78 +133,83 @@
                     
                 }
 
-                .label {
-                    font-weight: bold;
+                .review-wrapper {
+                    display: flex;
+                    justify-content: center;
+                }
+
+                .review-container {
+                    width: 30%;
+                    background-color:   #dbf373;
+                    display: flex;
+                    justify-content: center;
+                    
                 }
             </style>
 
-            <a href="index.html">Return to Reviews List</a>
-
-            <form method="post" action="index.html"> <!--TODO change out the forms for a selection that chooses a value based on the number of starts for each category-->
-            
-            <h1>Write a Review</h1>
-            
-            <h4>Choose a golf course from the dropdown list</h4>
-            <label for="golf-course-name">Course Name:
-                <select id="golf-course-names">
-                    <option value="course-name">Course 1</option>
-                    <option value="course-name">Course 2</option>
-                    <option value="course-name">Course 3</option>
-                    <option value="course-name">Course 4</option>
-                    <option value="course-name">Course 5</option>
-                    <option value="course-name">Course 6</option>
-                    <option value="course-name">Course 7</option>
-                    <option value="course-name">Course 8</option>
-                    <option value="course-name">Course 9</option>
-                </select>
-            </label>
-
-
-            <form action="submit_rating.php" method="post">
-                <label for="course-condition">Course Condition:
-                    <select id="course-condition" name="course-condition">
-                        <option value="1">1 star</option>
-                        <option value="2">2 stars</option>
-                        <option value="3">3 stars</option>
-                        <option value="4">4 stars</option>
-                        <option value="5">5 stars</option>
-                    </select>
-                </label>
+            <div class="review-wrapper">
+                <div class="review-container">
+                    <form method="post" action="index.html" style="display: flex; flex-direction: column; width: 80%;"> <!--TODO change out the forms for a selection that chooses a value based on the number of starts for each category-->
                 
-                <label for="forgiveness">Forgiveness:
-                    <select id="forgiveness" name="forgiveness">
-                        <option value="1">1 star</option>
-                        <option value="2">2 stars</option>
-                        <option value="3">3 stars</option>
-                        <option value="4">4 stars</option>
-                        <option value="5">5 stars</option>
-                    </select>
-                </label>
+                        <h1>Write a Review</h1>
+                        
+                        <h4>Choose a golf course from the dropdown list</h4>
+                        <label for="golf-course-name">Course Name:</label>
+                        <select id="golf-course-names">
+                            <option value="course-name">Course 1</option>
+                            <option value="course-name">Course 2</option>
+                            <option value="course-name">Course 3</option>
+                            <option value="course-name">Course 4</option>
+                            <option value="course-name">Course 5</option>
+                            <option value="course-name">Course 6</option>
+                            <option value="course-name">Course 7</option>
+                            <option value="course-name">Course 8</option>
+                            <option value="course-name">Course 9</option>
+                            <option value="course-name">Course 10</option>
+                        </select>
+                        <h4>Select a score from the dropdown list for each category</h4>
+                        <form action="submit_rating.php" method="post">
+                            <label for="course-condition">Course Condition:</label>
+                            <select id="course-condition" name="course-condition">
+                                <option value="1">1 star</option>
+                                <option value="2">2 stars</option>
+                                <option value="3">3 stars</option>
+                                <option value="4">4 stars</option>
+                                <option value="5">5 stars</option>
+                            </select>
 
-                <label for="noise">Noise:
-                    <select id="noise" name="noise">
-                        <option value="1">1 star</option>
-                        <option value="2">2 stars</option>
-                        <option value="3">3 stars</option>
-                        <option value="4">4 stars</option>
-                        <option value="5">5 stars</option>
-                    </select>
-                </label>
-                <label for="pace-of-play">Pace of Play:
-                    <select id="pace-of-play" name="pace-of-play">
-                        <option value="1">1 star</option>
-                        <option value="2">2 stars</option>
-                        <option value="3">3 stars</option>
-                        <option value="4">4 stars</option>
-                        <option value="5">5 stars</option>
-                    </select>
-                </label>
-        
-                <!-- Add more categories as needed -->
-        
-                <input type="submit" value="Submit" href="index.html">
-
-        </form>
+                            <label for="forgiveness">Forgiveness:</label>
+                            <select id="forgiveness" name="forgiveness">
+                                <option value="1">1 star</option>
+                                <option value="2">2 stars</option>
+                                <option value="3">3 stars</option>
+                                <option value="4">4 stars</option>
+                                <option value="5">5 stars</option>
+                            </select>
+            
+                            <label for="noise">Noise:</label>
+                            <select id="noise" name="noise">
+                                <option value="1">1 star</option>
+                                <option value="2">2 stars</option>
+                                <option value="3">3 stars</option>
+                                <option value="4">4 stars</option>
+                                <option value="5">5 stars</option>
+                            </select>
+                            <label for="pace-of-play">Pace of Play:</label>
+                            <select id="pace-of-play" name="pace-of-play">
+                                <option value="1">1 star</option>
+                                <option value="2">2 stars</option>
+                                <option value="3">3 stars</option>
+                                <option value="4">4 stars</option>
+                                <option value="5">5 stars</option>
+                            </select>
+                            <!-- Add more categories as needed -->
+                    
+                            <input type="submit" value="Submit" href="index.html">
+            
+                        </form>
+                </div>
+            </div>
 
         </main>
     </body>

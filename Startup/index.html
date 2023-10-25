@@ -35,10 +35,11 @@
                 color: #003d2b;
                 margin-left: 3px;
                 margin-right: 10px;
+                display: none;
             }
 
             .display-username {
-                display: hidden;
+                display: none;
             }
 
             .header h1 {
@@ -69,18 +70,21 @@
                 color: #446600;
                 position: relative;
                 transition: background-color 0.3s ease;
+                border-radius: 10px;
                 padding: 10px;
             }
 
             .nav-bar-item:hover {
                 background-color: #003d2b;
                 color: #dbf373;
+                border-radius: 10px;
 
             }
 
             button {
                 background-color: #dbf373;
                 transition: background-color 0.3s ease;
+                border-radius: 10px;
             }
 
             button:hover {
@@ -108,17 +112,21 @@
             }
 
             .login-prompt {
+                color:#003d2b;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
+                background-color:#dbf373; 
+                border-radius: 10px; 
+                padding: 5px;
                 
             }
 
 
             
         </style>
-        <meta charset="UTF-8" />
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
         <!--Tells browser not to scale the viewport automatically-->
         
         <title>Golfer's Buddy</title>
@@ -165,25 +173,25 @@
                     
                     <div class="login-prompt">
                         <h2>Log in to write a review</h2>
-                        <form method="get" action="index.html" style="border-bottom: thin black solid; display: flex; flex-direction: column;">
-                            <span>
+                        <form method="get" action="index.html" style="display: flex; flex-direction: column; justify-content: center;">
+                            <span style="display: flex; justify-content: space-between; margin: 3px;">
                                 <label for="name">Username</label>
                                 <input type="text" id="name" placeholder="Type your username" /> 
                             </span>
-                            <span>
+                            <span style="display: flex; justify-content: space-between; margin: 3px;">
                                 <label for="password">Password</label>
                                 <input type="password" id="password" placeholder="Type your password" />
                             </span>
-                            <button type="submit" href="review.html">Submit</button>
-                        </form>
+                            <br/>
+                            <span style="display: flex; justify-content: center;">
+                                <button type="submit" href="review.html" style="width: 50%; display: flex; justify-content: center;">Submit</button>
+                            </span>
+                            </form>
                     </div>
                     
                 
                 </div>
-                
 
-
-                <br />
                 <br />
 
 
@@ -205,6 +213,7 @@
                             background-color: #003d2b;
                             color: #dbf373;
                             padding: 20px;
+                            width: 80%;
                             border: thin #45523e solid;
                         }   
 
@@ -225,6 +234,37 @@
 
                         }   
 
+                        .rating-graph {
+                            width: 100%;
+                            border-collapse: collapse;;
+                        }
+
+                        .rating-graph tr {
+                            display: flex;
+                            border-bottom: 1px solid #dbf373;
+                            justify-content: space-between;
+                            margin: 10px 0;
+                        }
+
+                        .rating-graph th {
+                            text-align: center;
+                            font-weight: bold;
+                            padding: 8px;
+                            background-color: #003d2b;
+                            color: #dbf373;
+                            width: 20%;
+                            margin-left: 5px;
+                            margin-right: 5px;
+                        }
+
+                        .rating-graph td {
+                            text-align: center;
+                            font-weight: bold;
+                            padding: 8px;
+                            width: 20%;
+                            background-color: #003d2b;
+                            color: #dbf373;
+                        }
 
 
                         .label {
@@ -245,16 +285,16 @@
                     <div class="rating-list-container">
                         <div class="rating-list" >
 
-                            <table>
-                                <tr>
+                            <table class="rating-graph">
+                                <tr style="display: flex; justify-content: space-evenly;">
                                     <th>Course Name</th>
                                     <th>Course Condition</th>
                                     <th>Forgiveness</th>
                                     <th>Noise</th>
                                     <th>Pace of Play</th>
                                 </tr>
-                                <tr>
-                                    <td class="name">Course Name</td>
+                                <tr style="display: flex; justify-content: space-evenly;">
+                                    <td class="name">1. Course Name</td>
                                     <td class="rating">
                                         <span class="fa fa-star checked"></span>
                                         <span class="fa fa-star checked"></span>
@@ -284,8 +324,8 @@
                                         <span class="fa fa-star"></span></span>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="name">Course Name</td>
+                                <tr style="display: flex; justify-content: space-evenly;">
+                                    <td class="name">2. Course Name</td>
                                     <td class="rating">
                                         <span class="fa fa-star checked"></span>
                                         <span class="fa fa-star checked"></span>
@@ -315,8 +355,8 @@
                                         <span class="fa fa-star"></span></span>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="name">Course Name</td>
+                                <tr style="display: flex; justify-content: space-evenly;">
+                                    <td class="name">3. Course Name</td>
                                     <td class="rating">
                                         <span class="fa fa-star checked"></span>
                                         <span class="fa fa-star checked"></span>
@@ -346,8 +386,8 @@
                                         <span class="fa fa-star"></span></span>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="name">Course Name</td>
+                                <tr style="display: flex; justify-content: space-evenly;">
+                                    <td class="name">4. Course Name</td>
                                     <td class="rating">
                                         <span class="fa fa-star checked"></span>
                                         <span class="fa fa-star checked"></span>
@@ -377,8 +417,8 @@
                                         <span class="fa fa-star"></span></span>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="name">Course Name</td>
+                                <tr style="display: flex; justify-content: space-evenly;">
+                                    <td class="name">5. Course Name</td>
                                     <td class="rating">
                                         <span class="fa fa-star checked"></span>
                                         <span class="fa fa-star checked"></span>
@@ -408,8 +448,8 @@
                                         <span class="fa fa-star"></span></span>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="name">Course Name</td>
+                                <tr style="display: flex; justify-content: space-evenly;">
+                                    <td class="name">6. Course Name</td>
                                     <td class="rating">
                                         <span class="fa fa-star checked"></span>
                                         <span class="fa fa-star checked"></span>
@@ -439,8 +479,8 @@
                                         <span class="fa fa-star"></span></span>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="name">Course Name</td>
+                                <tr style="display: flex; justify-content: space-evenly;">
+                                    <td class="name">7. Course Name</td>
                                     <td class="rating">
                                         <span class="fa fa-star checked"></span>
                                         <span class="fa fa-star checked"></span>
@@ -470,8 +510,70 @@
                                         <span class="fa fa-star"></span></span>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="name">Course Name</td>
+                                <tr style="display: flex; justify-content: space-evenly;">
+                                    <td class="name">8. Course Name</td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                </tr>
+                                <tr style="display: flex; justify-content: space-evenly;">
+                                    <td class="name">9. Course Name</td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                    <td class="rating">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span></span>
+                                    </td>
+                                </tr>
+                                <tr style="display: flex; justify-content: space-evenly;">
+                                    <td class="name">10. Course Name</td>
                                     <td class="rating">
                                         <span class="fa fa-star checked"></span>
                                         <span class="fa fa-star checked"></span>
@@ -515,9 +617,9 @@
            
         </main>
 
-        <footer style="background-color: #dbf373;">
-            <hr />
-            <span class="text-reset">Kallai Dresen</span>
+        <footer style="background-color: #dbf373; display: flex;">
+
+            <span class="author-name" style="font-weight: bold; margin-right: 5px;">Kallai Dresen</span>
             <br />
             <a href="https://github.com/kdresen/CS260/blob/main/Startup">GitHub</a>
         </footer>
