@@ -43,12 +43,12 @@ The required technologies will be used in the following ways
 
 ### HTML Deliverable
 For this deliverable, I set up the structure of both pages of the application using HTML
-- **HTML pages** - Two pages that show the login and list of Golf courses with review and the page for writing a review
-- **Links** - Logging in redirects to the review page, added navigation links at top of page to write a review and to return to the course list page
-- **Text** - Each review rating is represented by a category title and a rating from 1 to 5 stars.
-- **Selection** - the review page uses dropdown boxes to choose from ratings and course names
-- **Images** - used an external library for icons to use a star icon for ratings, added header images to both pages
-- **Login** - created forms with input boxes and a submit button to login
-- **Database** - Dropdown boxes and course list will pull from the database for real time information of courses and average ratings for each category, still not done, I will need to set up the database first before the rest can get the values from it
-- **Websocket** - Course list ratings will pull real time to show an average rating for each category
+- **HTML pages** - Completed Two pages that show the login and list of Golf courses with review and the page for writing a review
+- **Links** - Completed Logging in redirects to the review page, added navigation links at top of page to write a review and to return to the course list page
+- **Text** - Completed Each review rating is represented by a category title and a rating from 1 to 5 stars.
+- **Selection** - Completed the review page uses dropdown boxes to choose from ratings and course names
+- **Images** - Compeleted used an external library for icons to use a star icon for ratings, added header images to both pages
+- **Login** - Completed created forms with input boxes and a submit button to login
+- **Database** - Completed Dropdown boxes and course list will pull from the database for real time information of courses and average ratings for each category, still not done, I will need to set up the database first before the rest can get the values from it
+- **Websocket** - Completed Course list ratings will pull real time to show an average rating for each category
  
