@@ -6,9 +6,19 @@
                 background-image: url(golfpanorama.jpg);
                 background-size: cover;
                 background-position: center;
-                color: white;
+                color: #dbf373;
+                
                 text-align: center;
                 padding: 100px 0;
+            }
+
+            header {
+                border-bottom: thin #45523e solid;
+            }
+            
+            body {
+                font-family: sans-serif;
+                
             }
 
             .username {
@@ -16,358 +26,384 @@
             }
 
             .header h1 {
-                font-size: 36px;
+                margin: 0;
+            }
+
+            
+            .header-box {
+                width: 300px;
+                padding: 10px;
+                background-color: #003d2b;
+            }
+
+            .nav-bar-item {
+                color: #446600;
+            }
+
+            button {
+                background-color: #dbf373;
             }
             
         </style>
         <meta charset="UTF-8" />
         <!--Tells browser not to scale the viewport automatically-->
-
+        
         <title>Golfer's Buddy</title>
+        
+        
 
     </head>
     <body>
-        <header>
+        <header style="color: #dbf373; background-color: #dbf373;">
             <div class="header">
-                <h1>Golfer's Buddy</h1>
+                <div class="header-box">
+                    <h1>Golfer's Buddy</h1>
+                </div>
+                
             </div>
             
             <!--Navitgation-->
-            <nav>
-                <menu>
-                    <li><a href="review.html">Write a Review</a></li>
-                    <li></li>
-                </menu>
-            </nav>
+            <div class="nav-bar" style="background-color: #dbf373; color: #003d2b;">            
+                <nav>
+                    <menu>
+                        <li><a class="nav-bar-item" href="index.html">Home</a></li>
+                        <li><a class="nav-bar-item" href="review.html">Write a Review</a></li>
+                        
+                    </menu>
+                </nav>
+            </div>
+
         </header>
 
         <main>
-            <!-- Add icon library-->
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-            <style>
+            <div class="main-body" style="color: white; background-color: #003d2b;">
+                <!-- Add icon library-->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                <style>
                 .checked {
                     color: orange;
                 }
-            </style>
-            <h1>Welcome <span class="username">Username placeholder</span></h1>
-            <h2>Log in to write a review</h2>
-            <form method="get" action="index.html">
-                <label for="name">Login</label>
-                <input type="text" id="name" placeholder="Type your username" /> 
-                <button type="submit" href="review.html">Submit</button>
-            </form>
-            <br />
-            <br />
-            <a href="review.html">
-                <button type="button" >Write a Review</button>
-            </a>
-            
+                </style>
+                <div class="login-prompt" >
+                    <h2>Log in to write a review</h2>
+                    <form method="get" action="index.html" style="border-bottom: thin black solid">
+                        <label for="name">Login</label>
+                        <input type="text" id="name" placeholder="Type your username" /> 
+                        <button type="submit" href="review.html">Submit</button>
+                    </form>
 
-            
-            <h1>Utah County Golf Courses</h1>
-            <style>
-                .course-box {
-                    border: 1px solid #ccc;
+                </div>
+
+
+                <br />
+                <br />
+
+
+                <h3>Welcome <span class="username">Username placeholder</span></h1>
+                
+                <h1 style="border-left: solid 0.5em #dbf373">Utah County Golf Courses</h1>
+                <a href="review.html">
+                    <button type="button">Write a Review</button>
+                </a>
+                <style>
+                    .course-box {
+                        
+
+                        margin: 10px 0;
+                    }
+
+                    .rating-list-items {
+                        list-style: none;
+                        padding: 0;
+                        margin: 0;
+                        display: flex;
+                        flex-direction: column;
+
+                    }
+
+
+
+                    .label {
+                        border: 1px solid #ccc;
+                        font-weight: bold;
+
+                    }
+
+
+                </style>
+
+                <h5>
+                    This is a temporary show until functionality to pull review scores from server is added
+                </h5>
+                <h5>
+                    Star values are a placeholder, stars will show database category values when implemented
+                </h5>
+                <div class="rating-list" style="background-color: #003d2b; color: #dbf373;">
                     
-                    padding: 5px;
-                }
+                    <table>
+                        <tr>
+                            <th>Course Name</th>
+                            <th>Course Condition</th>
+                            <th>Forgiveness</th>
+                            <th>Noise</th>
+                            <th>Pace of Play</th>
+                        </tr>
+                        <tr>
+                            <td class="name">Course Name</td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="name">Course Name</td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="name">Course Name</td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="name">Course Name</td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="name">Course Name</td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="name">Course Name</td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="name">Course Name</td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="name">Course Name</td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                            <td class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span></span>
+                            </td>
+                        </tr>
+                    </table>
 
-                .rating {
-                    border: 1px solid #ccc;
-
-                   
-                }
-
-                .label {
-                    border: 1px solid #ccc;
                     
-                }
+                </div>
+                
 
-                .name {
-                    border: 1px solid #ccc;
-                    
-                }
-
-                .label {
-                    font-weight: bold;
-                }
-            </style>
-
-            <h5>
-                This is a temporary show until functionality to pull review scores from server is added
-            </h5>
-            <h5>
-                Star values are a placeholder, stars will show database category values when implemented
-            </h5>
-            <ul>
-                <li class="course-box"><span class="label">Course Name</span>
-                    <span class="label">Course Conditions</span>
-                    <span class="label">Forgiveness</span>
-                    <span class="label">Noise</span>
-                    <span class="label">Pace of Play</span>
-                </li>
-                <li class="course-box"><span class="name">Course Name</span>
-                    <span class="rating">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                </li>
-                <li class="course-box"><span class="name">Course Name</span>
-                    <span class="rating">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                </li>
-                <li class="course-box"><span class="name">Course Name</span>
-                    <span class="rating">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                </li>                
-                <li class="course-box"><span class="name">Course Name</span>
-                    <span class="rating">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                </li>
-                <li class="course-box"><span class="name">Course Name</span>
-                    <span class="rating">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                </li> 
-                <li class="course-box"><span class="name">Course Name</span>
-                    <span class="rating">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                </li>
-                <li class="course-box"><span class="name">Course Name</span>
-                    <span class="rating">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                </li> 
-                <li class="course-box"><span class="name">Course Name</span>
-                    <span class="rating">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                </li>
-                <li class="course-box"><span class="name">Course Name</span>
-                    <span class="rating">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                </li>
-                <li class="course-box"><span class="name">Course Name</span>
-                    <span class="rating">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                    <span class="rating">            
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span></span>
-                </li>
-            </ul>
-
+            </div>
+           
         </main>
 
         <footer>
