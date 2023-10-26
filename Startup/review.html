@@ -58,6 +58,13 @@
                 margin: 0px;
                 padding: 0px;
                 background-color: #003d2b;
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                height: 100vh;
+
+                
+
             }
 
             .main-container {
@@ -74,6 +81,7 @@
             }
             
         </style>
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
     </head>
     <body>
         <header style="color: #dbf373; background-color: #dbf373;">
@@ -89,7 +97,6 @@
                 <nav style="display: flex; justify-content: space-between;">
                     <menu>
                         <a class="nav-bar-item" href="index.html">Home</a>
-                        <a class="nav-bar-item" href="review.html">Write a Review</a>
                         
                     </menu>
                 </nav>
@@ -143,21 +150,34 @@
                     justify-content: center;
                     background-color: #003d2b;
                     padding: 20px;
+                    width: 100%;
+                    
                 }
 
                 .review-container {
-                    width: 30%;
+                    width: 60%;
                     background-color:   #dbf373;
                     display: flex;
                     justify-content: center;
                     padding: 20px;
                     border-radius: 20px;
+                    height: 600px;
+                    overflow-y: auto;
+                    min-height: auto;
+                    max-height: calc(100vh - 150px);
+
                     
                 }
 
                 select {
                     width: 30%;
                     margin: 5px;
+                }
+
+                form {
+                    width: 100%;
+                    height: 100%;
+                    text-align: center;
                 }
 
                 form label {
@@ -175,6 +195,7 @@
                     border-radius: 10px;
                     font-size: 20px;
                     width: 33%;
+                    min-width: 100px;
                     transition: background-color 0.3s ease;
                 }
 
@@ -185,73 +206,73 @@
                 }
             </style>
 
-            <div class="review-wrapper">
-                <div class="review-container">
-                    <form method="post" action="index.html" style="display: flex; flex-direction: column; width: 80%; align-items:center;"> <!--TODO change out the forms for a selection that chooses a value based on the number of starts for each category-->
-                
-                        <h1>Write a Review</h1>
-                        
-                        <h4>Choose a golf course from the dropdown list</h4>
-                        <label for="golf-course-name">Course Name:</label>
-                        <select id="golf-course-names">
-                            <option value="course-name">Course 1</option>
-                            <option value="course-name">Course 2</option>
-                            <option value="course-name">Course 3</option>
-                            <option value="course-name">Course 4</option>
-                            <option value="course-name">Course 5</option>
-                            <option value="course-name">Course 6</option>
-                            <option value="course-name">Course 7</option>
-                            <option value="course-name">Course 8</option>
-                            <option value="course-name">Course 9</option>
-                            <option value="course-name">Course 10</option>
-                        </select>
-                        <h4>Select a score from the dropdown list for each category</h4>
-                        <form action="submit_rating.php" method="post">
-                            <label for="course-condition">Course Condition:</label>
-                            <select id="course-condition" name="course-condition">
-                                <option value="1">1 star</option>
-                                <option value="2">2 stars</option>
-                                <option value="3">3 stars</option>
-                                <option value="4">4 stars</option>
-                                <option value="5">5 stars</option>
-                            </select>
-
-                            <label for="forgiveness">Forgiveness:</label>
-                            <select id="forgiveness" name="forgiveness">
-                                <option value="1">1 star</option>
-                                <option value="2">2 stars</option>
-                                <option value="3">3 stars</option>
-                                <option value="4">4 stars</option>
-                                <option value="5">5 stars</option>
-                            </select>
+<div class="review-wrapper">
+    <div class="review-container">
+        <form method="post" action="index.html" style="display: flex; flex-direction: column; width: 80%; align-items:center;"> <!--TODO change out the forms for a selection that chooses a value based on the number of starts for each category-->
+    
+            <h1>Write a Review</h1>
             
-                            <label for="noise">Noise:</label>
-                            <select id="noise" name="noise">
-                                <option value="1">1 star</option>
-                                <option value="2">2 stars</option>
-                                <option value="3">3 stars</option>
-                                <option value="4">4 stars</option>
-                                <option value="5">5 stars</option>
-                            </select>
-                            <label for="pace-of-play">Pace of Play:</label>
-                            <select id="pace-of-play" name="pace-of-play">
-                                <option value="1">1 star</option>
-                                <option value="2">2 stars</option>
-                                <option value="3">3 stars</option>
-                                <option value="4">4 stars</option>
-                                <option value="5">5 stars</option>
-                            </select>
-                            <!-- Add more categories as needed -->
-                            <br/>
-                    
-                            <input type="submit" value="Submit" class="submit-review" href="index.html">
-            
-                        </form>
-                </div>
-                <div class="category-explain">
+            <h4>Choose a golf course from the dropdown list</h4>
+            <label for="golf-course-name">Course Name:</label>
+            <select id="golf-course-names">
+                <option value="course-name">Course 1</option>
+                <option value="course-name">Course 2</option>
+                <option value="course-name">Course 3</option>
+                <option value="course-name">Course 4</option>
+                <option value="course-name">Course 5</option>
+                <option value="course-name">Course 6</option>
+                <option value="course-name">Course 7</option>
+                <option value="course-name">Course 8</option>
+                <option value="course-name">Course 9</option>
+                <option value="course-name">Course 10</option>
+            </select>
+            <h4>Select a score from the dropdown list for each category</h4>
+            <form action="submit_rating.php" method="post">
+                <label for="course-condition">Course Condition:</label>
+                <select id="course-condition" name="course-condition">
+                    <option value="1">1 star</option>
+                    <option value="2">2 stars</option>
+                    <option value="3">3 stars</option>
+                    <option value="4">4 stars</option>
+                    <option value="5">5 stars</option>
+                </select>
 
-                </div>
-            </div>
+                <label for="forgiveness">Forgiveness:</label>
+                <select id="forgiveness" name="forgiveness">
+                    <option value="1">1 star</option>
+                    <option value="2">2 stars</option>
+                    <option value="3">3 stars</option>
+                    <option value="4">4 stars</option>
+                    <option value="5">5 stars</option>
+                </select>
+
+                <label for="noise">Noise:</label>
+                <select id="noise" name="noise">
+                    <option value="1">1 star</option>
+                    <option value="2">2 stars</option>
+                    <option value="3">3 stars</option>
+                    <option value="4">4 stars</option>
+                    <option value="5">5 stars</option>
+                </select>
+                <label for="pace-of-play">Pace of Play:</label>
+                <select id="pace-of-play" name="pace-of-play">
+                    <option value="1">1 star</option>
+                    <option value="2">2 stars</option>
+                    <option value="3">3 stars</option>
+                    <option value="4">4 stars</option>
+                    <option value="5">5 stars</option>
+                </select>
+                <!-- Add more categories as needed -->
+                <br/>
+        
+                <input type="submit" value="Submit" class="submit-review" href="index.html">
+
+            </form>
+    </div>
+    <div class="category-explain">
+
+    </div>
+</div>
 
         </main>
 

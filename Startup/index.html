@@ -67,7 +67,7 @@
                 margin-right: 20px;
                 text-decoration: none;
                 font-weight: bold;
-                color: #446600;
+                color: #003d2b;
                 position: relative;
                 transition: background-color 0.3s ease;
                 border-radius: 10px;
@@ -88,7 +88,9 @@
             }
 
             button:hover {
-                background-color: #e0f89c;
+                background-color: #003d2b;
+                color: #dbf373;
+                border-radius: 10px;
             }
 
             main {
@@ -139,6 +141,10 @@
                 height: 200px;
             }
 
+            .intro-png h1 {
+                color: #dbf373;
+            }
+
             img {
                 width: 40px;
                 height: 40px;
@@ -150,10 +156,34 @@
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
+                margin: 5px;
+                background-color: #dbf373;
+                border-radius: 10px;
+                color: #003d2b;
+                padding: 10px;
             }
 
             .png-card h4 {
                 text-align: center;
+            }
+
+            @media screen and (max-width: 768px) {
+                .login-div {
+                    flex-direction: column;
+                }
+
+                .login-prompt {
+                    width: 100%;
+                }
+
+                .intro-png {
+                    width: 100%;
+                }
+
+                .png-container {
+                    flex-direction: column;
+                    width: 100%;
+                }
             }
 
 
@@ -181,7 +211,6 @@
                 <nav style="display: flex; justify-content: space-between;">
                     <menu>
                         <a class="nav-bar-item" href="index.html">Home</a>
-                        <a class="nav-bar-item" href="review.html">Write a Review</a>
                         
                     </menu>
                 </nav>
@@ -223,8 +252,8 @@
                     </div>
 
                     <div class="intro-png">
-                        <h2>Finding Your Course, Made Easy</h2>
-                        <div clas="png-container" style="display: flex; justify-content: space-around; width: 40%;">
+                        <h1>Finding Your Course, Made Easy</h1>
+                        <div clas="png-container" style="display: flex; justify-content: space-between;">
                             <!--attribute author <a href="https://www.flaticon.com/free-icons/golfer" title="golfer icons">Golfer icons created by Darius Dan - Flaticon</a>-->
                             <div class="png-card"><img src="flag.png" alt="golf-field"><h4>Simple Categories</h4></div>
                             <!--attribute author <a href="https://www.flaticon.com/free-icons/golf" title="golf icons">Golf icons created by Freepik - Flaticon</a>-->
@@ -239,6 +268,8 @@
                 </div>
 
                 <br />
+                <br/>
+                <br/>
 
 
                 
@@ -259,6 +290,7 @@
                             padding: 20px;
                             width: 80%;
                             border: thin #45523e solid;
+                            margin-bottom: 20px;
                         }   
 
                         .rating-list {
@@ -267,6 +299,8 @@
                             margin: 0;
                             display: flex;
                             flex-direction: column;
+                            max-width: 100%;
+                            overflow-x: auto;
                         }
 
                         .rating-list-items {
@@ -280,7 +314,9 @@
 
                         .rating-graph {
                             width: 100%;
-                            border-collapse: collapse;;
+                            border-collapse: collapse;
+                            width: 100%;
+
                         }
 
                         .rating-graph tr {
@@ -299,6 +335,8 @@
                             width: 20%;
                             margin-left: 5px;
                             margin-right: 5px;
+
+                            
                         }
 
                         .rating-graph td {
@@ -311,11 +349,17 @@
                         }
 
 
+
+
+
+
                         .label {
                             border: 1px solid #ccc;
                             font-weight: bold;  
 
                         }   
+
+
 
 
                     </style>    
@@ -655,9 +699,12 @@
     
                         </div>
                     </div>
-                    <div class="intro">
-                        <h2>Golfer Buddy's Mission</h2>
+                    <div  style="background-color: #08342d; width: 100%; display: flex; justify-content: center; text-align: center;">
+                        <div class="intro" style="color:#dbf373;">
+                            <h2>Golfer Buddy's Mission</h2>
                         <p style="width: 80%;">Many people don't have the means to play every golf course in Utah County, this website's goal is to help golfer's like you and me rate their local courses with simple and concise categories that any golfer can understand. You don't need to play every course to know which ones are really worth the green fees.</p>
+                    
+                        </div>    
                     </div>
 
                 </div>
