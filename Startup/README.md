@@ -51,4 +51,13 @@ For this deliverable, I set up the structure of both pages of the application us
 - **Login** - Completed created forms with input boxes and a submit button to login
 - **Database** - Completed Dropdown boxes and course list will pull from the database for real time information of courses and average ratings for each category, still not done, I will need to set up the database first before the rest can get the values from it
 - **Websocket** - Completed Course list ratings will pull real time to show an average rating for each category
+
+### CSS Deliverable
+For this deliverable I created the final appearance I want the website to have when completed.
+- Header, footer, and main content body: Completed
+- Navigation: Completed, styled nav bar with hover change with font and color changes for style, bar is fixed to left with a username display that will appear after login on the right side
+- Responsive to window resizing: completed, all forms and contents adjust accordingly to match window size and reorders items to compensate for smaller screen
+- Application elements: completed, items are spaced well and allow breathing room. color palette is simple and aestetically pleasing.
+- Application text content: completed, text font and color is consitent throughout, changes color to match hover color change of buttons and nav bar
+- application images: completed, added pngs to add more color and liven the page.
  
