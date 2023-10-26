@@ -145,6 +145,17 @@
                 
             }
 
+            .png-card {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .png-card h4 {
+                text-align: center;
+            }
+
 
             
         </style>
@@ -213,13 +224,13 @@
 
                     <div class="intro-png">
                         <h2>Finding Your Course, Made Easy</h2>
-                        <div style="display: flex; justify-content: space-around; width: 40%;">
+                        <div clas="png-container" style="display: flex; justify-content: space-around; width: 40%;">
                             <!--attribute author <a href="https://www.flaticon.com/free-icons/golfer" title="golfer icons">Golfer icons created by Darius Dan - Flaticon</a>-->
-                            <div><img src="flag.png" alt="golf-field"></div>
+                            <div class="png-card"><img src="flag.png" alt="golf-field"><h4>Simple Categories</h4></div>
                             <!--attribute author <a href="https://www.flaticon.com/free-icons/golf" title="golf icons">Golf icons created by Freepik - Flaticon</a>-->
-                            <div><img src="golf.png" alt="golf-green"></div>
+                            <div class="png-card"><img src="golf.png" alt="golf-green"><h4>Local Courses</h4></div>
                             <!--attribute author <a href="https://www.flaticon.com/free-icons/golf-cart" title="golf cart icons">Golf cart icons created by Freepik - Flaticon</a>-->
-                            <div><img src="golf-cart.png" alt="golf"></div>
+                            <div class="png-card"><img src="golf-cart.png" alt="golf"><h4>Less Stress More Golf</h4></div>
                         </div>
                         
                     </div>
