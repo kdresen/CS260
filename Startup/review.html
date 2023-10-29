@@ -95,15 +95,35 @@
             <!--Navitgation-->
             <div class="nav-bar" style="background-color: #dbf373; color: #2F331B;">            
                 <nav style="display: flex; justify-content: space-between;">
-                    <menu>
+                    <menu style="display: flex; align-items: center; justify-content: center;">
                         <a class="nav-bar-item" href="index.html">Home</a>
                         
                     </menu>
                 </nav>
                 <!--TODO add javascript hiding this until after login-->
-                <h3 class="display-username" style="display: flex; justify-content: right;">Welcome<span class="username"> Username placeholder</span></h1>
+                <h3 class="username" id="username" style="margin-right: 5px; display: flex; justify-content: right;">Welcome &nbsp;</h3>
                 
             </div>
+
+            <script>
+                //
+                const isLoggedIn = !!localStorage.getItem('username');
+
+                // get username from local storage
+                const username = localStorage.getItem('username');
+
+                // Find username element
+                const usernameElement = document.getElementById('username');
+
+                if (isLoggedIn && usernameElement) {
+                    let span = document.createElement("span");
+                    span.textContent = ' ' + username;
+                    usernameElement.appendChild(span);
+                } else {
+                    usernameElement.style.display = 'none';
+                }
+
+            </script>
 
         </header>
         <main>
