@@ -411,10 +411,24 @@
                         Star values are a placeholder, stars will show database category values when implemented
                     </h5>
                     <div class="rating-list-container">
-                        <div class="rating-list" >
-                            <a href="review.html">
-                                <button type="button">Write a Review</button>
-                            </a>
+                        <div class="rating-list" > 
+                            <div>
+                                <button type="button" onclick="checkLogin()">Write a Review</button>
+                            </div>                 
+                            
+
+                            <script>
+                                function checkLogin() {
+                                    const username = localStorage.getItem('username');
+
+                                    if(!username) {
+                                        alert("Please log in to write a review.");
+
+                                    } else {
+                                        window.location.href = "review.html";
+                                    }
+                                }
+                            </script>
 
                             <table class="rating-graph" id="rating-table">
                                 <tr style="display: flex; justify-content: space-evenly;">
