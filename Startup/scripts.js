@@ -1,12 +1,71 @@
 let courseData = {
-    "1. Course Name": [10, 5, 5, 5, 5],
-    "2. Course Name": [8, 3, 4, 5, 2],
-    "3. Course Name": [12, 4, 2, 3, 1],
-    "4. Course Name": [2, 3, 1, 4, 5],
+    "1. Course Name": [1, 5, 5, 5, 5],
+    "2. Course Name": [1, 3, 4, 5, 2],
+    "3. Course Name": [1, 4, 2, 3, 1],
+    "4. Course Name": [1, 3, 1, 4, 5],
 }
+
+
 
 // Store courseData in localStorage
 localStorage.setItem('courseData', JSON.stringify(courseData));
+
+
+function createCourseData(courseReviews) {
+    const aggregatedData = {};
+
+    for (let courseName in courseReviews) {
+        const reviews = courseReviews[courseName];
+
+        if (Array.isArray(reviews[0])) {
+            // Case where scores are directly provided as an array
+            const totalScores = new Array(reviews[0].length).fill(0);
+
+            for (const scores of reviews) {
+                for (let i = 0; i < scores.length; i++) {
+                    totalScores[i] += scores[i];
+                }
+            }
+
+            const averageScores = totalScores.map(score => score / reviews.length);
+
+            aggregatedData[courseName] = averageScores;
+        } else if (reviews[0] && Array.isArray(reviews[0].scores)) {
+            // Case where scores are within an array of review objects
+            const totalScores = new Array(reviews[0].scores.length).fill(0);
+
+            for (const review of reviews) {
+                for (let i = 0; i < review.scores.length; i++) {
+                    totalScores[i] += review.scores[i];
+                }
+            }
+
+            const averageScores = totalScores.map(score => score / reviews.length);
+
+            aggregatedData[courseName] = averageScores;
+        }
+    }
+
+    return aggregatedData;
+}
+
+
+let courseReviews = {
+    "1. Course Name": [
+        { scores: [5, 5, 5, 5] },
+        { scores: [3, 3, 3, 3] },
+    ],
+    "2. Course Name": [3, 4, 5, 2],
+    "3. Course Name": [4, 2, 3, 1],
+    "4. Course Name": [3, 1, 4, 5],
+    
+
+}
+
+const averageScores = calculateAverageScores(courseReviews);
+console.log(averageScores);
+
+
 
 
 
