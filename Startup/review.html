@@ -11,10 +11,6 @@
                 padding: 100px 0;
             }
 
-            .display-username {
-                display: none;
-            }
-
             .header h1 {
                 margin: 0;
                 animation: slideIn 1s ease-in;
@@ -26,6 +22,13 @@
                 width: 300px;
                 padding: 10px;
                 background-color: #2F331B;
+            }
+            
+            .username {
+                color: #2F331B;
+                margin-left: 3px;
+                margin-right: 10px;
+                display: none;
             }
 
             .nav-bar {
@@ -101,7 +104,7 @@
                     </menu>
                 </nav>
                 <!--TODO add javascript hiding this until after login-->
-                <h3 class="username" id="username" style="margin-right: 5px; display: flex; justify-content: right;">Welcome &nbsp;</h3>
+                <h3 class="username" id="username" style="display: flex; align-items: center; justify-content: center;">Welcome &nbsp;</h3>
                 
             </div>
 
@@ -247,7 +250,7 @@
                 <option value="course-name">Course 10</option>
             </select>
             <h4>Select a score from the dropdown list for each category</h4>
-            <form action="submit_rating.php" method="post">
+            <form action="index.html" method="post">
                 <label for="course-condition">Course Condition:</label>
                 <select id="course-condition" name="course-condition">
                     <option value="1">1 star</option>
