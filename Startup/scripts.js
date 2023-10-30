@@ -1,29 +1,51 @@
 let courseData = {
-
+    "1. Course Name": [1,1,1,1,1],
+    "2. Course Name": [1,1,1,1,1],
+    "3. Course Name": [1,1,1,1,1],
+    "4. Course Name": [1,1,1,1,1],
+    "5. Course Name": [1,1,1,1,1],
 }
 
 let courseReviews = {
-    "1. Course Name": [
+    "The Ranches": [
         { scores: [5, 5, 1, 1] },
         { scores: [4, 4, 2, 2] },
         { scores: [1, 1, 4, 4] },
         
     ],
-    "2. Course Name": [
+    "Talons Cove": [
+        { scores: [3, 4, 5, 2] },
+        { scores: [1, 4, 1, 4] },
+    ],
+    "Hobble Creek": [
         { scores: [3, 4, 5, 2] },
     ],
-    "3. Course Name": [
+    "Sleepy Ridge": [
         { scores: [3, 4, 5, 2] },
-    ],
-    "4. Course Name": [
-        { scores: [3, 4, 5, 2] },
+        { scores: [2, 2, 2, 2] },
     ],
     
 
 }
 
 // Store courseData in localStorage
-localStorage.setItem('courseData', JSON.stringify(courseData));
+let storedCourseData = localStorage.getItem('courseData');
+let storedCourseReviews = localStorage.getItem('courseReviews');
+
+if (storedCourseData) {
+    courseData = JSON.parse(storedCourseData);
+} else {
+    localStorage.setItem('courseData', JSON.stringify(courseData));
+}
+if (storedCourseReviews) {
+    courseReviews = JSON.parse(storedCourseReviews);
+} else {
+    localStorage.setItem('courseReviews', JSON.stringify(courseReviews));
+}
+
+function redoCourseData(courseReviews) {
+
+}
 
 
 function calculateAverageScores(courseReviews) {
@@ -68,13 +90,12 @@ function calculateAverageScores(courseReviews) {
 
     return aggregatedData;
 }
-
-
-
-
 courseData = calculateAverageScores(courseReviews);
+localStorage.setItem('courseData', JSON.stringify(courseData));
 window.onload = populateTable();
-console.log(courseData);
+
+
+
 
 
 
@@ -84,6 +105,8 @@ console.log(courseData);
 function appendCourseRow(courseName, rowItems) {
     let table = document.getElementById("rating-table");
     let row = document.createElement("tr");
+
+
 
     // Add course name to the first cell
     let courseNameCell = document.createElement("td");
@@ -110,14 +133,16 @@ function appendCourseRow(courseName, rowItems) {
     
 }
 
-let storedCourseData = localStorage.getItem('courseData');
 
-if (storedCourseData) {
-    courseData = JSON.parse(storedCourseData);
-}
 
 
 function populateTable() {
+    const table = document.getElementById("rating-table");
+
+    while (table.rows.length > 0) {
+        table.deleteRow(0);
+    }
+
     for (let courseName in courseData) {
         appendCourseRow(courseName, courseData[courseName]);
     }
@@ -125,6 +150,14 @@ function populateTable() {
 
 
 window.onload = displayUsername();
+window.onload = function () {
+    const isLoggedIn = !!localStorage.getItem('username');
+    const loginPromptDiv = document.querySelector('.login-prompt');
+
+    if (isLoggedIn) {
+        loginPromptDiv.style.display = 'none';
+    }
+}
 
 function displayUsername() {
     //
@@ -157,6 +190,8 @@ function handleLogin() {
     
     // Store username in local storage
     localStorage.setItem('username', username);
+
+    document.querySelector('.login-prompt').style.display = 'none';
     
     window.location.href= "review.html";
 
@@ -176,3 +211,49 @@ function checkLogin() {
         window.location.href = "review.html";
     }
 }
+
+
+function getRandomReviewInt(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
+function getRandomReview() {
+    const scores = [];
+    for (let i = 0; i < 4; i++) {
+        scores.push(getRandomReviewInt(1, 5));
+    }
+
+    return { scores };
+}
+
+function getRandomCourse(courseReviews) {
+
+    const courseNames = Object.keys(courseReviews);
+
+
+
+    const randomIndex = Math.floor(Math.random() * courseNames.length);
+    return courseNames[randomIndex];
+}
+
+
+function addRandomReview(courseReviews) {
+
+    const randomCourseName = getRandomCourse(courseReviews);
+
+    courseReviews[randomCourseName].push(getRandomReview());
+
+    courseData = calculateAverageScores(courseReviews);
+    localStorage.setItem('courseData', JSON.stringify(courseData));
+
+    populateTable();
+}
+
+
+setInterval(function () {
+    addRandomReview(courseReviews);
+}, 10000);
+
+
+
+

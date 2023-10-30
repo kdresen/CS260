@@ -85,6 +85,7 @@
             
         </style>
         <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Golfer's Buddy</title>
     </head>
     <body>
         <header style="color: #dbf373; background-color: #dbf373;">
@@ -236,12 +237,12 @@
             <h1>Write a Review</h1>
             
             <h4>Choose a golf course from the dropdown list</h4>
-            <label for="golf-course-name">Course Name:</label>
+            <label for="golf-course-names">Course Name:</label>
             <select id="golf-course-names"></select>
-            <!--Dynamically generates course names from list-->
+            <!--Dynamically generates course names from list--> 
 
             <h4>Select a score from the dropdown list for each category</h4>
-            <form action="index.html" method="post">
+            
                 <label for="course-condition">Course Condition:</label>
                 <select id="course-condition" name="course-condition">
                     <option value="1">1 star</option>
@@ -279,9 +280,9 @@
                 <!-- Add more categories as needed -->
                 <br/>
         
-                <input type="submit" value="Submit" class="submit-review" href="index.html">
+                <input type="submit" value="Submit" onclick="collectReviewData(event)" class="submit-review" href="index.html">
 
-            </form>
+        </form>
     </div>
     <div class="category-explain">
 
@@ -296,6 +297,8 @@
             <br />
             <a style="text-decoration: none;"href="https://github.com/kdresen/CS260/blob/main/Startup">GitHub</a>
         </footer>
+
+        <script src="reviewScripts.js"></script>
     </body>
 
 </html>
