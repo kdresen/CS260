@@ -59,5 +59,13 @@ For this deliverable I created the final appearance I want the website to have w
 - Responsive to window resizing: completed, all forms and contents adjust accordingly to match window size and reorders items to compensate for smaller screen
 - Application elements: completed, items are spaced well and allow breathing room. color palette is simple and aestetically pleasing.
 - Application text content: completed, text font and color is consitent throughout, changes color to match hover color change of buttons and nav bar
-- application images: completed, added pngs to add more color and liven the page.
- 
+- application images: completed, added pngs to add more color and liven the page.d
+
+ ### JavaScript Devliverable
+ For this deliverable, I added the functionality of submitting reviews, and dynamically generating the table of average review scores for each Golf Course
+ - login - logging in hides the login prompt and displays the username in the top right, it also redirects to the review writing page
+ - database - displayed the average scores for each of the categories in the table on the main page. Currently stored and retrieved from local storage, but will be changed for the database
+ - Websocket - a new random review is added every couple of seconds, this is then updated to show the increased review count and updated averages on the main page table. Will be replaced with websocket messages
+ - application logic - user chooses scores from a dropdown on the review page and the scores are added into the table
+
+   
