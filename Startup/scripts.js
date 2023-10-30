@@ -7,22 +7,40 @@ let courseData = {
 }
 
 let courseReviews = {
-    "The Ranches": [
+    "The Ranches Golf Club": [
         { scores: [5, 5, 1, 1] },
         { scores: [4, 4, 2, 2] },
         { scores: [1, 1, 4, 4] },
         
     ],
-    "Talons Cove": [
+    "TalonsCove Golf Club": [
         { scores: [3, 4, 5, 2] },
         { scores: [1, 4, 1, 4] },
     ],
-    "Hobble Creek": [
+    "Hobble Creek Golf Course": [
         { scores: [3, 4, 5, 2] },
     ],
-    "Sleepy Ridge": [
+    "Links at Sleepy Ridge": [
         { scores: [3, 4, 5, 2] },
         { scores: [2, 2, 2, 2] },
+    ],
+    "Fox Hollow Golf Club": [
+        { scores: [3, 3, 3, 3]},
+    ],
+    "Cedar Hills Golf Club": [
+        { scores: [3, 3, 3, 3]},
+    ],
+    "The Oaks at Spanish Fork": [
+        { scores: [3, 3, 3, 3]},
+    ],
+    "Thanksgiving Point Golf Club": [
+        { scores: [3, 3, 3, 3]},
+    ],
+    "Gladstan Golf Course": [
+        { scores: [3, 3, 3, 3]},
+    ],
+    "Timpanogos Golf Club": [
+        { scores: [3, 3, 3, 3]},
     ],
     
 
