@@ -130,7 +130,7 @@
             </script>
 
         </header>
-        <main>
+        <main style="display:flex; flex-direction: column">
             <!-- Add icon library-->
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <style>
@@ -232,7 +232,7 @@
 
 <div class="review-wrapper">
     <div class="review-container">
-        <form method="post" action="index.html" style="display: flex; flex-direction: column; width: 80%; align-items:center;"> <!--TODO change out the forms for a selection that chooses a value based on the number of starts for each category-->
+        <form method="post" action="/submit-review" style="display: flex; flex-direction: column; width: 80%; align-items:center;"> <!--TODO change out the forms for a selection that chooses a value based on the number of starts for each category-->
     
             <h1>Write a Review</h1>
             
@@ -284,9 +284,7 @@
 
         </form>
     </div>
-    <div class="category-explain">
 
-    </div>
 </div>
 
         </main>
@@ -298,7 +296,7 @@
             <a style="text-decoration: none;"href="https://github.com/kdresen/CS260/blob/main/Startup">GitHub</a>
         </footer>
 
-        <script src="reviewScripts.js"></script>
+        <script src="review.js"></script>
     </body>
 
 </html>

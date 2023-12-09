@@ -1,12 +1,5 @@
-
-let courseData = {};
-
-let courseReviews = {};
-
-
 let storedCourseData = localStorage.getItem('courseData');
 let storedCourseReviews = localStorage.getItem('courseReviews');
-console.log(storedCourseReviews);
 
 if (storedCourseData) {
     courseData = JSON.parse(storedCourseData);
@@ -35,7 +28,7 @@ function checkLogin() {
 
     if(!username) {
         alert("Please log in to write a review.");
-        window.location.href = "index.html";
+        window.location.href = "index.html"; 
 
     } else {
         alert("Thank you for submitting a review");
@@ -51,23 +44,31 @@ function collectReviewData(event) {
     const courseNoise = parseInt(document.getElementById("noise").value, 10);
     const coursePaceOfPlay = parseInt(document.getElementById("pace-of-play").value, 10);
 
-    console.log(courseName);
     const reviewData = {
-        scores: [courseCondition, courseForgiveness, courseNoise, coursePaceOfPlay],
+        courseName,
+        courseCondition,
+        courseForgiveness,
+        courseNoise,
+        coursePaceOfPlay,
     };
 
-    if (courseReviews[courseName]) {
-        courseReviews[courseName].push(reviewData);
-    }
-  
+    fetch('/api/submit-review', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reviewData),
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert("Thank you for submitting your review!");
+        window.location.href = "index.html";
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
 
     localStorage.setItem('courseReviews', JSON.stringify(courseReviews));
-
-    // Display a thank-you message
-    alert("Thank you for submitting your review!");
-
-    // Redirect back to index.html
-    window.location.href = "index.html";
 }
 
 

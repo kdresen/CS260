@@ -1,3 +1,4 @@
+
 let courseData = {
     "1. Course Name": [1,1,1,1,1],
     "2. Course Name": [1,1,1,1,1],
@@ -45,24 +46,33 @@ let courseReviews = {
     
 
 }
-
 // Store courseData in localStorage
 let storedCourseData = localStorage.getItem('courseData');
 let storedCourseReviews = localStorage.getItem('courseReviews');
 
-if (storedCourseData) {
+if (!storedCourseData) { 
+    fetch('/api/data')
+        .then(response => response.json())
+        .then(data => {
+            courseData = data;
+            localStorage.setItem('courseData', JSON.stringify(courseData));
+        })
+        .catch(error => console.error('Error fetching courseData:', error));
+
+} else {
     courseData = JSON.parse(storedCourseData);
-} else {
-    localStorage.setItem('courseData', JSON.stringify(courseData));
 }
-if (storedCourseReviews) {
+
+if (!storedCourseReviews) {
+    fetch('/api/reviews')
+        .then(response => response.json())
+        .then(reviews => {
+            courseReviews = reviews;
+            localStorage.setItem('courseReviews', JSON.stringify(courseReviews));
+        })
+        .catch(error => console.error('Error fetching courseReviews:', error));
+} else {
     courseReviews = JSON.parse(storedCourseReviews);
-} else {
-    localStorage.setItem('courseReviews', JSON.stringify(courseReviews));
-}
-
-function redoCourseData(courseReviews) {
-
 }
 
 
@@ -108,23 +118,46 @@ function calculateAverageScores(courseReviews) {
 
     return aggregatedData;
 }
-courseData = calculateAverageScores(courseReviews);
-localStorage.setItem('courseData', JSON.stringify(courseData));
-window.onload = populateTable();
+
+function populateTable() {
+    const table = document.getElementById("rating-table");
+
+    while (table.rows.length > 1) {
+        table.deleteRow(1);
+    }
+
+    for (let courseName in courseData) {
+        appendCourseRow(courseName, courseData[courseName]);
+    }
+};
+
+async function updateCourseData() {
+
+    try {
+        const response = await fetch('/api/reviews');
+        courseReviews = await response.json();
+
+        courseData = calculateAverageScores(courseReviews);
+
+    
+        localStorage.setItem('courseData', JSON.stringify(courseData));
 
 
+    } catch {
+        const dataText = localStorage.getItem('scores');
+        if (dataText) {
+            courseData = JSON.parse(dataText);
+        }
+    }
 
-
-
-
-
+    populateTable();
+}
+updateCourseData();
 
 
 function appendCourseRow(courseName, rowItems) {
     let table = document.getElementById("rating-table");
     let row = document.createElement("tr");
-
-
 
     // Add course name to the first cell
     let courseNameCell = document.createElement("td");
@@ -151,20 +184,6 @@ function appendCourseRow(courseName, rowItems) {
     
 }
 
-
-
-
-function populateTable() {
-    const table = document.getElementById("rating-table");
-
-    while (table.rows.length > 1) {
-        table.deleteRow(1);
-    }
-
-    for (let courseName in courseData) {
-        appendCourseRow(courseName, courseData[courseName]);
-    }
-};
 
 
 window.onload = displayUsername();
@@ -196,28 +215,11 @@ function displayUsername() {
 }
 
 function handleLogin() {
-    // get username and password
-    const username = document.getElementById("name").value;
-    const password = document.getElementById("password").value;
-
-    // check if both fields are filled
-    if (username.trim() === "" || password.trim() === "") {
-        alert("Please fill in both fields");
-        return;
-    }
-    
-    // Store username in local storage
-    localStorage.setItem('username', username);
-
-    document.querySelector('.login-prompt').style.display = 'none';
-    
-    window.location.href= "review.html";
-
-    alert("Login successful. You can now submit reviews.")
+    const nameEl = document.querySelector("#name");
+    const passwordEl = document.querySelector("#password");
+    localStorage.setItem("username", nameEl.value);
+    window.location.href = "index.html";
 }
-
-
-
 
 function checkLogin() {
     const username = localStorage.getItem('username');
@@ -229,7 +231,6 @@ function checkLogin() {
         window.location.href = "review.html";
     }
 }
-
 
 function getRandomReviewInt(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
@@ -253,7 +254,6 @@ function getRandomCourse(courseReviews) {
     const randomIndex = Math.floor(Math.random() * courseNames.length);
     return courseNames[randomIndex];
 }
-
 
 function addRandomReview(courseReviews) {
 
