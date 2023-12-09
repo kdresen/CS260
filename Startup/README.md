@@ -68,4 +68,10 @@ For this deliverable I created the final appearance I want the website to have w
  - Websocket - a new random review is added every couple of seconds, this is then updated to show the increased review count and updated averages on the main page table. Will be replaced with websocket messages
  - application logic - user chooses scores from a dropdown on the review page and the scores are added into the table
 
-   
+### Service Deliverable
+For this deliverable I added backend endpoints and thirdparty endpoints to interact with the server created in Node.js. These retrieve and add reviews to submit as well as populating the table of reviews
+- Node.js/Express HTTP service - completed in index.js file
+- Static middleware for frontend - completed in index.js file
+- Calls to third party endpoints - added a Dad joke api on the home page
+- Backend service endpoints - Placeholder for login that stores the user on the server. Endpoints for populating the table of reviews and adding new reviews to the table
+- Frontend calls service endpoints - using fetch function to retrieve the response of each get api path
