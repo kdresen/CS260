@@ -43,17 +43,22 @@ async function collectReviewData(event) {
     const noise = parseInt(document.getElementById("noise").value, 10);
     const paceOfPlay = parseInt(document.getElementById("pace-of-play").value, 10);
 
+    
     const reviewData = {
         courseName: name,
         courseCondition: condition,
-        courseForgiveness: forgiveness,
-        courseNoise: noise,
-        coursePaceOfPlay: paceOfPlay
+        forgiveness: forgiveness,
+        noise: noise,
+        paceOfPlay: paceOfPlay
     };
+
+
+
+    console.log(reviewData);
 
     try {
         // add new review to db and return list of reviews
-        fetch('/api/submit-review', {
+        const response = await fetch('/api/submit-review', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -61,14 +66,31 @@ async function collectReviewData(event) {
             body: JSON.stringify(reviewData),
         })
         // set reviews to localStorage
-        const response = await response.json();
-        localStorage.setItem('courseReviews', JSON.stringify(response));
+        const result = await response.json();
+        console.log(result);
+        localStorage.setItem('courseReviews', JSON.stringify(result));
+        
         // return to main page
         window.location.href = "index.html";
-    } catch {
+    } catch (error) {
+        console.error('Error submitting review:', error);
+        const courseReviews = JSON.parse(localStorage.getItem('courseReviews')) || {};
+            // if the courseName isn't already in the list create it
+        if (!courseReviews[name]) {
+            courseReviews[name] = [];
+        }
+    
+        // create a newReview object with info
+        const newReview = {
+            scores: [condition, forgiveness, noise, paceOfPlay],
+        };
         // if failure, store new review locally
-        const courseReviews = localStorage.getItem('courseReviews');
-        courseReviews[name].push[reviewData];
+        console.log('couldn\'t add a new review');
+
+        console.log(courseReviews);
+        console.log(name);
+        console.log(newReview);
+        courseReviews[name].push(newReview);
         localStorage.setItem('courseReviews', JSON.stringify(courseReviews));
     }
 }

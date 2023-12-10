@@ -28,16 +28,6 @@ app.get('/dadJoke', (req, res) => {
     })
 })
 
-
-
-let courseData = {
-    "1. Course Name": [1,1,1,1,1],
-    "2. Course Name": [1,1,1,1,1],
-    "3. Course Name": [1,1,1,1,1],
-    "4. Course Name": [1,1,1,1,1],
-    "5. Course Name": [1,1,1,1,1],
-}
-
 let courseReviews = {
     "The Ranches Golf Club": [
         { scores: [5, 5, 1, 1] },
@@ -104,13 +94,14 @@ app.listen(port, () => {
 // Get Reviews
 
 apiRouter.get('/reviews', async (_req, res) => {
+
+    let tempReviewList = {};
     const reviews = await DB.getAllCourseReviews();
     // data is currently stored in individual objects need to separated them into reviews
-    console.log(reviews);
-    for (let i = 0; i < reviews.length; i++) {
-        const object = reviews[i];
-        if (!courseReviews[object.courseName]) {
-            courseReviews[object.courseName] = [];
+    for (const object of reviews) {
+
+        if (!tempReviewList[object.courseName]) {
+            tempReviewList[object.courseName] = [];
         }
 
         const reviewData = {
@@ -118,11 +109,11 @@ apiRouter.get('/reviews', async (_req, res) => {
         
         }
 
-        courseReviews[object.courseName].push(reviewData);
+        tempReviewList[object.courseName].push(reviewData);
+
+        courseReviews = tempReviewList;
 
     }
-
-    console.log(courseReviews);
 
     res.send(courseReviews);
 });
@@ -135,7 +126,10 @@ apiRouter.get('/data', async (_req, res) => {
 // make new review
 apiRouter.post('/submit-review', async (req, res) => {
     const { courseName, courseCondition, forgiveness, noise, paceOfPlay } = req.body;
-
+    console.log(courseName);
+    console.log(courseCondition);
+    console.log(noise);
+    console.log(paceOfPlay);
     // if the courseName isn't already in the list create it
     if (!courseReviews[courseName]) {
         courseReviews[courseName] = [];
@@ -143,7 +137,11 @@ apiRouter.post('/submit-review', async (req, res) => {
 
     // create a newReview object with info
     const newReview = {
-        scores: [parseInt(courseCondition), parseInt(forgiveness), parseInt(noise), parseInt(paceOfPlay)],
+        courseName: courseName,
+        courseCondition: courseCondition,
+        forgiveness: forgiveness,
+        noise: noise,
+        paceOfPlay: paceOfPlay,
     };
     // add newReview to db
     DB.addReview(newReview);
@@ -151,7 +149,7 @@ apiRouter.post('/submit-review', async (req, res) => {
     // retrieve all reviews to update courseReviews list
     const allReviews = await DB.getAllCourseReviews();
 
-    for (const review in allReviews) {
+    for (const review of allReviews) {
         const tempReview = {
             scores: [parseInt(review.courseCondition), parseInt(review.forgiveness), parseInt(review.noise), parseInt(review.paceOfPlay)],
         }

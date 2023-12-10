@@ -51,12 +51,9 @@ async function getStoredReviews() {
     try {
         // store most recent database reviews to localStorage
         const response = await fetch('/api/reviews');
-        console.log('response');
-        const storedCourseReviews = response.json();
-        console.log(storedCourseReviews);
+        const storedCourseReviews = await response.json();
         localStorage.setItem('courseReviews', JSON.stringify(storedCourseReviews));
-        console.log('stored in localStorage');
-        console.log(storedCourseReviews);
+
     } catch {
         // if there was an error use example data above
         localStorage.setItem('courseReviews', JSON.stringify(courseReviews));
