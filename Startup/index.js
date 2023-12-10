@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const DB = require('./database.js');
 
 const request = require('request');
 
@@ -102,27 +103,61 @@ app.listen(port, () => {
 
 // Get Reviews
 
-apiRouter.get('/reviews', (_req, res) => {
+apiRouter.get('/reviews', async (_req, res) => {
+    const reviews = await DB.getAllCourseReviews();
+    // data is currently stored in individual objects need to separated them into reviews
+    console.log(reviews);
+    for (let i = 0; i < reviews.length; i++) {
+        const object = reviews[i];
+        if (!courseReviews[object.courseName]) {
+            courseReviews[object.courseName] = [];
+        }
+
+        const reviewData = {
+            scores: [parseInt(object.courseCondition), parseInt(object.forgiveness), parseInt(object.noise), parseInt(object.paceOfPlay)],
+        
+        }
+
+        courseReviews[object.courseName].push(reviewData);
+
+    }
+
+    console.log(courseReviews);
+
     res.send(courseReviews);
 });
 
-apiRouter.get('/data', (_req, res) => {
+apiRouter.get('/data', async (_req, res) => {
+    const courseData = await DB.getAllCourseReviews();
     res.send(courseData);
 })
 
 // make new review
-apiRouter.post('/submit-review', (req, res) => {
+apiRouter.post('/submit-review', async (req, res) => {
     const { courseName, courseCondition, forgiveness, noise, paceOfPlay } = req.body;
 
+    // if the courseName isn't already in the list create it
     if (!courseReviews[courseName]) {
         courseReviews[courseName] = [];
     }
 
+    // create a newReview object with info
     const newReview = {
         scores: [parseInt(courseCondition), parseInt(forgiveness), parseInt(noise), parseInt(paceOfPlay)],
     };
+    // add newReview to db
+    DB.addReview(newReview);
 
-    courseReviews[courseName].push(newReview);
+    // retrieve all reviews to update courseReviews list
+    const allReviews = await DB.getAllCourseReviews();
 
-    res.json({success: true, message: 'Review added succesfully!'});
+    for (const review in allReviews) {
+        const tempReview = {
+            scores: [parseInt(review.courseCondition), parseInt(review.forgiveness), parseInt(review.noise), parseInt(review.paceOfPlay)],
+        }
+        courseReviews[review.courseName].push(tempReview);
+    }    
+
+    // send back new courseReviews list
+    res.send(courseReviews);
 });

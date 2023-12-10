@@ -1,44 +1,44 @@
 const { MongoClient } = require('mongodb');
 const config = require('./dbConfig.json');
 
-async function main() {
-    // connect to the db cluster
-    const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
-    const client = new MongoClient(url);
-    const db = client.db('rental');
-    const collection = db.collection('house');
 
-    // Test that you can connect to the database
-    (async function testConnection() {
-        await client.connect();
-        await db.command({ ping: 1 });
-    })().catch((ex) => {
-        console.log(`Unable to connect to database with ${url} because ${ex.message}`);
-        process.exit(1);
-    });
+// connect to the db cluster
+const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
+const client = new MongoClient(url);
+const db = client.db('startup');
+const collection = db.collection('reviews');
 
-  // Insert a document
-  const house = {
-    name: 'Beachfront views',
-    summary: 'From your bedroom to the beach, no shoes required',
-    property_type: 'Condo',
-    beds: 1,
-  };
-  await collection.insertOne(house);
 
-  // Query the documents
-  const query = { property_type: 'Condo', beds: { $lt: 2 } };
-  const options = {
-    sort: { score: -1 },
-    limit: 10,
-  };
+// Test that you can connect to the database
+(async function testConnection() {
+    await client.connect();
+    await db.command({ ping: 1 });
+})().catch((ex) => {
+    console.log(`Unable to connect to database with ${url} because ${ex.message}`);
+    process.exit(1);
+});
 
-  const cursor = collection.find(query, options);
-  const rentals = await cursor.toArray();
-  rentals.forEach((i) => console.log(i));
+
+async function addReview(newReview) {
+  const result = await collection.insertOne(newReview);
+  return result;
 }
 
-main().catch(console.error);
+
+// get all reviews with specific course name
+function getCourseReviews(name) {
+  const query = { courseName: name };
+  const cursor = collection.find(query);
+  return cursor.toArray();
+}
+
+// get all reviews for all courses to use in courseData
+function getAllCourseReviews() {
+  const cursor = collection.find();
+  return cursor.toArray();
+}
+
+module.exports = { addReview, getCourseReviews, getAllCourseReviews };
 
 
 

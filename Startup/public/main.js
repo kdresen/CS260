@@ -1,10 +1,10 @@
 
 let courseData = {
-    "1. Course Name": [1,1,1,1,1],
-    "2. Course Name": [1,1,1,1,1],
-    "3. Course Name": [1,1,1,1,1],
-    "4. Course Name": [1,1,1,1,1],
-    "5. Course Name": [1,1,1,1,1],
+    "The Ranches Golf Club": [1,1,1,1,1],
+    "TalonsCove Golf Club": [1,1,1,1,1],
+    "Hobble Creek Golf Course": [1,1,1,1,1],
+    "Links at Sleepy Ridge": [1,1,1,1,1],
+    "Fox Hollow Golf Club": [1,1,1,1,1],
 }
 
 let courseReviews = {
@@ -46,35 +46,25 @@ let courseReviews = {
     
 
 }
-// Store courseData in localStorage
-let storedCourseData = localStorage.getItem('courseData');
-let storedCourseReviews = localStorage.getItem('courseReviews');
+// get reviews from database
+async function getStoredReviews() {
+    try {
+        // store most recent database reviews to localStorage
+        const response = await fetch('/api/reviews');
+        console.log('response');
+        const storedCourseReviews = response.json();
+        console.log(storedCourseReviews);
+        localStorage.setItem('courseReviews', JSON.stringify(storedCourseReviews));
+        console.log('stored in localStorage');
+        console.log(storedCourseReviews);
+    } catch {
+        // if there was an error use example data above
+        localStorage.setItem('courseReviews', JSON.stringify(courseReviews));
+    }
 
-if (!storedCourseData) { 
-    fetch('/api/data')
-        .then(response => response.json())
-        .then(data => {
-            courseData = data;
-            localStorage.setItem('courseData', JSON.stringify(courseData));
-        })
-        .catch(error => console.error('Error fetching courseData:', error));
+    updateCourseData()
 
-} else {
-    courseData = JSON.parse(storedCourseData);
 }
-
-if (!storedCourseReviews) {
-    fetch('/api/reviews')
-        .then(response => response.json())
-        .then(reviews => {
-            courseReviews = reviews;
-            localStorage.setItem('courseReviews', JSON.stringify(courseReviews));
-        })
-        .catch(error => console.error('Error fetching courseReviews:', error));
-} else {
-    courseReviews = JSON.parse(storedCourseReviews);
-}
-
 
 function calculateAverageScores(courseReviews) {
     const aggregatedData = {};
@@ -89,7 +79,6 @@ function calculateAverageScores(courseReviews) {
             for (const scores of reviews) {
                 for (let i = 0; i < scores.length; i++) {
                     totalScores[i] += scores[i];
-                    
                 }
             }
 
@@ -144,14 +133,15 @@ async function updateCourseData() {
 
 
     } catch {
-        const dataText = localStorage.getItem('scores');
-        if (dataText) {
-            courseData = JSON.parse(dataText);
-        }
+        // if error happens just use example courseData above
+        localStorage.setItem('courseData', JSON.stringify(courseData));
     }
 
     populateTable();
 }
+// retrieve reviews
+getStoredReviews();
+// create review averages
 updateCourseData();
 
 

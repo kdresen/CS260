@@ -35,40 +35,42 @@ function checkLogin() {
     }
 }
 
-function collectReviewData(event) {
+async function collectReviewData(event) {
     event.preventDefault();
-
-    const courseName = document.getElementById("golf-course-names").value;
-    const courseCondition = parseInt(document.getElementById("course-condition").value, 10);
-    const courseForgiveness = parseInt(document.getElementById("forgiveness").value, 10);
-    const courseNoise = parseInt(document.getElementById("noise").value, 10);
-    const coursePaceOfPlay = parseInt(document.getElementById("pace-of-play").value, 10);
+    const name = document.getElementById("golf-course-names").value;
+    const condition = parseInt(document.getElementById("course-condition").value, 10);
+    const forgiveness = parseInt(document.getElementById("forgiveness").value, 10);
+    const noise = parseInt(document.getElementById("noise").value, 10);
+    const paceOfPlay = parseInt(document.getElementById("pace-of-play").value, 10);
 
     const reviewData = {
-        courseName,
-        courseCondition,
-        courseForgiveness,
-        courseNoise,
-        coursePaceOfPlay,
+        courseName: name,
+        courseCondition: condition,
+        courseForgiveness: forgiveness,
+        courseNoise: noise,
+        coursePaceOfPlay: paceOfPlay
     };
 
-    fetch('/api/submit-review', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(reviewData),
-    })
-    .then(response => response.json())
-    .then(data => {
-        alert("Thank you for submitting your review!");
+    try {
+        // add new review to db and return list of reviews
+        fetch('/api/submit-review', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(reviewData),
+        })
+        // set reviews to localStorage
+        const response = await response.json();
+        localStorage.setItem('courseReviews', JSON.stringify(response));
+        // return to main page
         window.location.href = "index.html";
-    })
-    .catch(error => {
-        console.error("Error:", error);
-    });
-
-    localStorage.setItem('courseReviews', JSON.stringify(courseReviews));
+    } catch {
+        // if failure, store new review locally
+        const courseReviews = localStorage.getItem('courseReviews');
+        courseReviews[name].push[reviewData];
+        localStorage.setItem('courseReviews', JSON.stringify(courseReviews));
+    }
 }
 
 
