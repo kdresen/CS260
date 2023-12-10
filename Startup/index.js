@@ -1,8 +1,11 @@
+const cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
 const express = require('express');
 const app = express();
 const DB = require('./database.js');
-
 const request = require('request');
+
+const authCookieName = 'token';
 
 app.get('/dadJoke', (req, res) => {
     const apiKey = 'mrtaVqc6eMIqqVkXNRMDEw==yv4KjCdPrT9EOyB1';
@@ -74,12 +77,78 @@ const port = process.argv.length > 2 ? process.argv[2] : 3000;
 // JSON body parsing using built-in middleware
 app.use(express.json());
 
+// Use the cookie parser middleware for tracking authentication tokens
+app.use(cookieParser());
+
 // Serve up the front-end static content hosting
 app.use(express.static('public'));
+
+// Trust headers that are forwarded from the proxy so we can determin IP addresses
+app.set('trust proxy', true);
 
 // Router for service endpoints
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
+
+// Create Auth token for a new user
+apiRouter.post('/auth/create', async (req, res) => {
+    if (await DB.getCourseReviews(req.body.email)) {
+        res.status(409).send({ msg: 'Existing user'});
+    } else {
+        const user = await DB.createUser(req.body.email, req.body.password);
+
+        // Set the cookie
+        setAuthCookie(res, user.token);
+
+        res.send({
+            id: user._id,
+        });
+    }
+});
+
+// Get Auth token for the provided credentials
+apiRouter.post('/auth/login', async (req, res) => {
+    const user = await DB.getCourseReviews(req.body.email);
+    if (user) {
+        if (await bcrypt.compare(req.body.password, user.password)) {
+            setAuthCookie(res, user.token);
+            res.send({ id: user._id });
+            return;
+        }
+    }
+    res.status(401).send({ msg: 'Unauthorized' });
+});
+
+// Delete Auth token if stored in cookie
+apiRouter.delete('/auth/logout', (_req, res) => {
+    res.clearCookie(authCookieName);
+    res.status(204).end();
+});
+
+// GetUser returns info about a user
+apiRouter.get('/user/:email', async (req, res) => {
+    const user = await DB.getCourseReviews(req.params.email);
+    if (user) {
+        const token = req?.cookies.token;
+        res.send({email: user.email, authenticated: token === user.token});
+        return;
+    }
+    res.status(404).send({ msg: 'Unknown' });
+});
+
+// secureApiRouter verifies credentials for endpoints
+let secureApiRouter = express.Router();
+apiRouter.use(secureApiRouter);
+
+secureApiRouter.use(async (req, res, next) => {
+    authToken = req.cookies[authCookieName];
+    const user = await DB.getUserByToken(authToken);
+    if (user) {
+        next();
+    } else {
+        res.status(401).send({ msg: 'Unauthorized' });
+    }
+});
 
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
@@ -93,7 +162,7 @@ app.listen(port, () => {
 
 // Get Reviews
 
-apiRouter.get('/reviews', async (_req, res) => {
+secureApiRouter.get('/reviews', async (_req, res) => {
 
     let tempReviewList = {};
     const reviews = await DB.getAllCourseReviews();
@@ -118,13 +187,13 @@ apiRouter.get('/reviews', async (_req, res) => {
     res.send(courseReviews);
 });
 
-apiRouter.get('/data', async (_req, res) => {
+secureApiRouter.get('/data', async (_req, res) => {
     const courseData = await DB.getAllCourseReviews();
     res.send(courseData);
 })
 
 // make new review
-apiRouter.post('/submit-review', async (req, res) => {
+secureApiRouter.post('/submit-review', async (req, res) => {
     const { courseName, courseCondition, forgiveness, noise, paceOfPlay } = req.body;
     console.log(courseName);
     console.log(courseCondition);
@@ -159,3 +228,16 @@ apiRouter.post('/submit-review', async (req, res) => {
     // send back new courseReviews list
     res.send(courseReviews);
 });
+
+// setAuthCookie in the HTTP response
+function setAuthCookie(res, authToken) {
+    res.cookie(authCookieName, authToken, {
+        secure: true,
+        httpOnly: true,
+        sameSite: 'strict',
+    });
+}
+
+
+
+
