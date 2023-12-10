@@ -75,3 +75,11 @@ For this deliverable I added backend endpoints and thirdparty endpoints to inter
 - Calls to third party endpoints - added a Dad joke api on the home page
 - Backend service endpoints - Placeholder for login that stores the user on the server. Endpoints for populating the table of reviews and adding new reviews to the table
 - Frontend calls service endpoints - using fetch function to retrieve the response of each get api path
+
+### DB Deliverable
+For this deliverable I altered the code to retrieve and store reviews in a mongodb database
+- MongoDB Atlas database created - Completed
+- Endpoints for data - backend endpoints using MongoDB in database.js created and index.js files now use them for get and post actions
+- Stores data in MongoDB - Completed, data persistent even after clearing local storage
+
+
