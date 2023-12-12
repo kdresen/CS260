@@ -211,6 +211,7 @@
                 <nav style="display: flex; justify-content: space-between;">
                     <menu style="display: flex; align-items: center; justify-content: center;">
                         <a class="nav-bar-item" href="index.html">Home</a>
+                        <a class="nav-bar-item" onclick="logout()" href="index.html">Logout</a>
                         
                     </menu>
                 </nav>
@@ -246,7 +247,8 @@
                             </span>
                             <br/>
                             <span style="display: flex; justify-content: center;">
-                                <button type="submit" onclick="handleLogin()" style="width: 50%; display: flex; justify-content: center;">Submit</button>
+                                <button type="button" onclick="loginUser()" style="width: 50%; display: flex; justify-content: center;">Login</button>
+                                <button type="button" onclick="createUser()" style="width: 50%; display: flex; justify-content: center;">Create</button>
                             </span>
                         </form>
                     </div>
@@ -354,14 +356,8 @@
 
                         }   
 
-                    </style>    
+                    </style>
 
-                    <h5>
-                        This is a temporary graph until functionality to pull review scores from server is added
-                    </h5>
-                    <h5>
-                        Star values are a placeholder, stars will show database category values when implemented
-                    </h5>
                     <div class="rating-list-container">
                         <div class="rating-list" > 
                             <div>

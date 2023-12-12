@@ -21,20 +21,20 @@ const reviewsCollection = db.collection('reviews');
     process.exit(1);
 });
 
-function getUser(email) {
-  return userCollection.findOne({ email: email });
+function getUser(username) {
+  return userCollection.findOne({ username: username });
 }
 
 function getUserByToken(token) {
   return userCollection.findOne({ token: token });
 }
 
-async function createUser(email, password) {
+async function createUser(username, password) {
   // Hash the password before we insert it into the database
   const passwordHash = await bcrypt.hash(password, 10);
 
   const user = {
-    email: email,
+    username: username,
     password: passwordHash,
     token: uuid.v4(),
   };
@@ -44,9 +44,8 @@ async function createUser(email, password) {
 }
 
 
-async function addReview(newReview) {
-  const result = await reviewsCollection.insertOne(newReview);
-  return result;
+function addReview(newReview) {
+  reviewsCollection.insertOne(newReview);
 }
 
 

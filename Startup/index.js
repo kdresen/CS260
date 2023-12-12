@@ -92,10 +92,10 @@ app.use(`/api`, apiRouter);
 
 // Create Auth token for a new user
 apiRouter.post('/auth/create', async (req, res) => {
-    if (await DB.getCourseReviews(req.body.email)) {
+    if (await DB.getUser(req.body.username)) {
         res.status(409).send({ msg: 'Existing user'});
     } else {
-        const user = await DB.createUser(req.body.email, req.body.password);
+        const user = await DB.createUser(req.body.username, req.body.password);
 
         // Set the cookie
         setAuthCookie(res, user.token);
@@ -108,7 +108,7 @@ apiRouter.post('/auth/create', async (req, res) => {
 
 // Get Auth token for the provided credentials
 apiRouter.post('/auth/login', async (req, res) => {
-    const user = await DB.getCourseReviews(req.body.email);
+    const user = await DB.getUser(req.body.username);
     if (user) {
         if (await bcrypt.compare(req.body.password, user.password)) {
             setAuthCookie(res, user.token);
@@ -126,11 +126,11 @@ apiRouter.delete('/auth/logout', (_req, res) => {
 });
 
 // GetUser returns info about a user
-apiRouter.get('/user/:email', async (req, res) => {
-    const user = await DB.getCourseReviews(req.params.email);
+apiRouter.get('/user/:username', async (req, res) => {
+    const user = await DB.getUser(req.params.username);
     if (user) {
         const token = req?.cookies.token;
-        res.send({email: user.email, authenticated: token === user.token});
+        res.send({username: user.username, authenticated: token === user.token});
         return;
     }
     res.status(404).send({ msg: 'Unknown' });
@@ -194,35 +194,24 @@ secureApiRouter.get('/data', async (_req, res) => {
 
 // make new review
 secureApiRouter.post('/submit-review', async (req, res) => {
-    const { courseName, courseCondition, forgiveness, noise, paceOfPlay } = req.body;
-    console.log(courseName);
-    console.log(courseCondition);
-    console.log(noise);
-    console.log(paceOfPlay);
+    const review = {...req.body, ip: req.ip};
+
     // if the courseName isn't already in the list create it
-    if (!courseReviews[courseName]) {
-        courseReviews[courseName] = [];
+    if (!courseReviews[review.courseName]) {
+        courseReviews[review.courseName] = [];
     }
 
-    // create a newReview object with info
-    const newReview = {
-        courseName: courseName,
-        courseCondition: courseCondition,
-        forgiveness: forgiveness,
-        noise: noise,
-        paceOfPlay: paceOfPlay,
-    };
     // add newReview to db
-    DB.addReview(newReview);
+    await DB.addReview(review);
 
     // retrieve all reviews to update courseReviews list
     const allReviews = await DB.getAllCourseReviews();
 
-    for (const review of allReviews) {
+    for (const currentReview of allReviews) {
         const tempReview = {
-            scores: [parseInt(review.courseCondition), parseInt(review.forgiveness), parseInt(review.noise), parseInt(review.paceOfPlay)],
+            scores: [parseInt(currentReview.courseCondition), parseInt(currentReview.forgiveness), parseInt(currentReview.noise), parseInt(currentReview.paceOfPlay)],
         }
-        courseReviews[review.courseName].push(tempReview);
+        courseReviews[currentReview.courseName].push(tempReview);
     }    
 
     // send back new courseReviews list

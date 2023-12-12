@@ -48,18 +48,23 @@ let courseReviews = {
 }
 // get reviews from database
 async function getStoredReviews() {
+    let storedCourseReviews = [];
     try {
         // store most recent database reviews to localStorage
         const response = await fetch('/api/reviews');
-        const storedCourseReviews = await response.json();
-        localStorage.setItem('courseReviews', JSON.stringify(storedCourseReviews));
-
+        storedCourseReviews = await response.json();
+        if (storedCourseReviews.msg == "Unauthorized") { 
+            storedCourseReviews = localStorage.getItem('courseReviews');
+        } else {
+            localStorage.setItem('courseReviews', JSON.stringify(storedCourseReviews));
+        }
+        
     } catch {
         // if there was an error use example data above
-        localStorage.setItem('courseReviews', JSON.stringify(courseReviews));
+        storedCourseReviews = localStorage.getItem('courseReviews');
     }
 
-    updateCourseData()
+    updateCourseData(storedCourseReviews);
 
 }
 
@@ -117,11 +122,9 @@ function populateTable() {
     }
 };
 
-async function updateCourseData() {
+async function updateCourseData(courseReviews) {
 
     try {
-        const response = await fetch('/api/reviews');
-        courseReviews = await response.json();
 
         courseData = calculateAverageScores(courseReviews);
 
@@ -201,11 +204,51 @@ function displayUsername() {
     }
 }
 
-function handleLogin() {
-    const nameEl = document.querySelector("#name");
-    const passwordEl = document.querySelector("#password");
-    localStorage.setItem("username", nameEl.value);
-    window.location.href = "index.html";
+async function loginUser() {
+    loginOrCreate(`/api/auth/login`);
+}
+
+async function createUser() {
+    loginOrCreate(`/api/auth/create`);
+}
+
+async function loginOrCreate(endpoint) {
+    const username = document.querySelector('#name')?.value;
+    console.log(username);
+    const password = document.querySelector('#password')?.value;
+    console.log(password);
+    const response = await fetch(endpoint, {
+        method: 'post',
+        body: JSON.stringify({ username: username, password: password }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    });
+
+    if (response.ok) {
+        localStorage.setItem('username', username);
+        window.location.href = 'index.html';
+    } else {
+        const body = await response.json();
+        alert(`Error: ${body.msg}`);
+    }
+}
+
+
+function logout() {
+    localStorage.removeItem('username');
+    fetch(`/api/auth/logout`, {
+        method: 'delete',
+    }).then(() => (window.location.href = '/'));
+}
+
+async function getUser(username) {
+    const response = await fetch(`/api/user/${username}`);
+    if (response.status === 200) {
+        return response.json();
+    }
+
+    return null;
 }
 
 function checkLogin() {

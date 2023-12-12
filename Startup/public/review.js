@@ -36,6 +36,7 @@ function checkLogin() {
 }
 
 async function collectReviewData(event) {
+    checkLogin();
     event.preventDefault();
     const name = document.getElementById("golf-course-names").value;
     const condition = parseInt(document.getElementById("course-condition").value, 10);
