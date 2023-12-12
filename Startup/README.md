@@ -82,4 +82,9 @@ For this deliverable I altered the code to retrieve and store reviews in a mongo
 - Endpoints for data - backend endpoints using MongoDB in database.js created and index.js files now use them for get and post actions
 - Stores data in MongoDB - Completed, data persistent even after clearing local storage
 
-
+### Login Deliverable
+For this deliverable I require the user to be logged in to submit reviews.
+- User registration - Creates a new account in the DB
+- existing user - Able to login using previously created accounts
+- Use MongoDB to stored credentials - Stores reviews and user credentials
+- Restricts functionality - Can't make reviews without logging in first.
