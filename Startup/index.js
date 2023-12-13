@@ -2,6 +2,7 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const express = require('express');
 const app = express();
+const { peerProxy } = require('./peerProxy.js');
 const DB = require('./database.js');
 const request = require('request');
 
@@ -217,6 +218,11 @@ secureApiRouter.post('/submit-review', async (req, res) => {
     // send back new courseReviews list
     res.send(courseReviews);
 });
+
+
+
+
+
 
 // setAuthCookie in the HTTP response
 function setAuthCookie(res, authToken) {

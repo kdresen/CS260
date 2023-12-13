@@ -1,4 +1,6 @@
 
+const NewReviewEvent = 'newReview';
+
 let courseData = {
     "The Ranches Golf Club": [1,1,1,1,1],
     "TalonsCove Golf Club": [1,1,1,1,1],
@@ -46,6 +48,46 @@ let courseReviews = {
     
 
 }
+
+class reviewMessages {
+    constructor() {
+        this.configureWebSocket();
+    }
+
+
+    configureWebSocket() {
+        const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+        this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+        this.socket.onopen = (event) => {
+            this.displayMsg('system', 'game', 'connected');
+        };
+        this.socket.onclose = (event) => {
+            this.displayMsg('system', 'game', 'disconnected');
+        };
+        this.socket.onmessage = async (event) => {
+            const msg = JSON.parse(await event.data.text());
+            if (msg.type === NewReviewEvent) {
+                this.displayMsg('user', msg.from, `just submitted a review`);
+            }
+        };
+    }
+    
+    displayMsg(cls, from, msg) {
+        const chatText = document.querySelector('#review-messages');
+        chatText.innerHTML = `<div class="event"><span class="${cls}-event">${from}</span> ${msg}</div>` + chatText.innerHTML;
+    }
+    
+    broadcastEvent(from, type, value) {
+        const event = {
+            from: from,
+            type: type,
+            value: value,
+        };
+        this.socket.send(JSON.stringify(event));
+    }
+}
+
+
 // get reviews from database
 async function getStoredReviews() {
     let storedCourseReviews = [];
@@ -139,6 +181,7 @@ async function updateCourseData(courseReviews) {
 
     populateTable();
 }
+const instantce = new reviewMessages();
 // retrieve reviews
 getStoredReviews();
 // create review averages
@@ -298,10 +341,12 @@ function addRandomReview(courseReviews) {
 }
 
 
+
+
+
 setInterval(function () {
     addRandomReview(courseReviews);
 }, 10000);
-
 
 
 
