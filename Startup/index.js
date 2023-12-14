@@ -155,10 +155,6 @@ secureApiRouter.use(async (req, res, next) => {
 app.use((_req, res) => {
     res.sendFile('index.html', { root: 'public' });
 });
-  
-app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
-});
 
 
 // Get Reviews
@@ -219,9 +215,11 @@ secureApiRouter.post('/submit-review', async (req, res) => {
     res.send(courseReviews);
 });
 
+const httpService = app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
+})
 
-
-
+peerProxy(httpService);
 
 
 // setAuthCookie in the HTTP response

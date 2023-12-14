@@ -59,14 +59,18 @@ class reviewMessages {
         const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
         this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
         this.socket.onopen = (event) => {
-            this.displayMsg('system', 'game', 'connected');
+            this.displayMsg('system', 'server', 'connected');
         };
         this.socket.onclose = (event) => {
-            this.displayMsg('system', 'game', 'disconnected');
+            this.displayMsg('system', 'server', 'disconnected');
         };
         this.socket.onmessage = async (event) => {
             const msg = JSON.parse(await event.data.text());
+            console.log(msg);
+            console.log('onmessage');
             if (msg.type === NewReviewEvent) {
+                populateTable();
+                console.log("reached here");
                 this.displayMsg('user', msg.from, `just submitted a review`);
             }
         };
@@ -83,7 +87,7 @@ class reviewMessages {
             type: type,
             value: value,
         };
-        this.socket.send(JSON.stringify(event));
+        this.socket.send(JSON.stringify(event)); 
     }
 }
 
@@ -181,7 +185,7 @@ async function updateCourseData(courseReviews) {
 
     populateTable();
 }
-const instantce = new reviewMessages();
+const instance = new reviewMessages();
 // retrieve reviews
 getStoredReviews();
 // create review averages
@@ -330,12 +334,27 @@ function getRandomCourse(courseReviews) {
 
 function addRandomReview(courseReviews) {
 
-    const randomCourseName = getRandomCourse(courseReviews);
+    const fakeUsernames = ['Jake', 'mrSquiggles', 'JonnyRotten', 'theBestGolferEver', 'TigerWoods', 'JackN', 'ArnoldPalmer'];
+    let chosenName = 0;
+
+    function getRandomFakeUser(fakeUsernames) {
+        const randomIndex = Math.floor(Math.random() * fakeUsernames.length);
+        chosenName = fakeUsernames[randomIndex];
+        return chosenName;
+    }
+
+    getRandomFakeUser(fakeUsernames);
+    const randomCourseName = getRandomCourse(courseReviews); 
 
     courseReviews[randomCourseName].push(getRandomReview());
 
+    instance.broadcastEvent(chosenName, NewReviewEvent, 'Just submitted a new review');
+
     courseData = calculateAverageScores(courseReviews);
     localStorage.setItem('courseData', JSON.stringify(courseData));
+
+
+    
 
     populateTable();
 }

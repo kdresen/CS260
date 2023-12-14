@@ -23,6 +23,7 @@ function peerProxy(httpServer) {
                 }
             });
         });
+    
 
         ws.on('close', () => {
             connections.findIndex((o, i) => {
@@ -35,6 +36,7 @@ function peerProxy(httpServer) {
 
         ws.on('pong', () => {
             connections.alive = true;
+
         });
     });
 
@@ -46,7 +48,7 @@ function peerProxy(httpServer) {
                 c.alive = false;
                 c.ws.ping();
             }
-        });
+         });
     }, 10000);
 }
 
