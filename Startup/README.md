@@ -88,3 +88,10 @@ For this deliverable I require the user to be logged in to submit reviews.
 - existing user - Able to login using previously created accounts
 - Use MongoDB to stored credentials - Stores reviews and user credentials
 - Restricts functionality - Can't make reviews without logging in first.
+
+### WebSocket deliverable
+For this deliverable I used webSocket to show reviews and review scores being submitted in realtime 
+- Backend listens for WebSocket connection - complete
+- Frontend makes WebSocket connection - complete
+- Data sent over WebSocket connection - complete
+- WebSocket data displayed - username for the review is displayed in the top left corner showing they have submitted a review using the broadcastEvent function. Wasn't able to figure out how to implement using the function on the review submitting page, so websocket messages are from a interval function using randomly created reviews.
