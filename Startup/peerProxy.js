@@ -35,8 +35,7 @@ function peerProxy(httpServer) {
         });
 
         ws.on('pong', () => {
-            connections.alive = true;
-
+            connection.alive = true;
         });
     });
 

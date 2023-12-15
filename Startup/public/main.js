@@ -50,8 +50,16 @@ let courseReviews = {
 }
 
 class reviewMessages {
+
+    static instance;
+
     constructor() {
-        this.configureWebSocket();
+        if (!reviewMessages.instance) {
+            reviewMessages.instance = this;
+            this.configureWebSocket();
+        }
+
+        return reviewMessages.instance;
     }
 
 
@@ -332,7 +340,7 @@ function getRandomCourse(courseReviews) {
     return courseNames[randomIndex];
 }
 
-function addRandomReview(courseReviews) {
+async function addRandomReview(courseReviews) {
 
     const fakeUsernames = ['Jake', 'mrSquiggles', 'JonnyRotten', 'theBestGolferEver', 'TigerWoods', 'JackN', 'ArnoldPalmer'];
     let chosenName = 0;
@@ -345,27 +353,41 @@ function addRandomReview(courseReviews) {
 
     getRandomFakeUser(fakeUsernames);
     const randomCourseName = getRandomCourse(courseReviews); 
+    const fakeReview = getRandomReview();
 
-    courseReviews[randomCourseName].push(getRandomReview());
+    courseReviews[randomCourseName].push(fakeReview);
+
+    const reviewData = {
+        courseName: randomCourseName,
+        courseCondition: fakeReview.scores[0],
+        forgiveness: fakeReview.scores[1],
+        noise: fakeReview.scores[2],
+        paceOfPlay: fakeReview.scores[3]
+    };
 
     instance.broadcastEvent(chosenName, NewReviewEvent, 'Just submitted a new review');
 
     courseData = calculateAverageScores(courseReviews);
     localStorage.setItem('courseData', JSON.stringify(courseData));
 
-
+    try {
+        const reponse = await fetch(`/api/submit-review`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(reviewData),
+        })
+    } catch (error) {
+        console.error('Error submitting review:', error);
+    }
     
 
     populateTable();
 }
 
 
-
-
-
 setInterval(function () {
     addRandomReview(courseReviews);
 }, 10000);
-
-
 

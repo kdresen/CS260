@@ -1,5 +1,6 @@
 let storedCourseData = localStorage.getItem('courseData');
 let storedCourseReviews = localStorage.getItem('courseReviews');
+const NewReviewEvent = 'newReview';
 
 if (storedCourseData) {
     courseData = JSON.parse(storedCourseData);
@@ -43,7 +44,7 @@ async function collectReviewData(event) {
     const forgiveness = parseInt(document.getElementById("forgiveness").value, 10);
     const noise = parseInt(document.getElementById("noise").value, 10);
     const paceOfPlay = parseInt(document.getElementById("pace-of-play").value, 10);
-
+    const username = localStorage.getItem('username');
     
     const reviewData = {
         courseName: name,
